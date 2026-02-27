@@ -1,37 +1,7 @@
 // 自动生成的数据文件
-// 生成时间: 2026-02-27T16:44:34.491Z
-// 数据来源: skill 每日推送 (V2)
+// 生成时间: 2026-02-27T17:01:44.312Z
+// 数据来源: skill
 // 数据质量: 置信度 100%, 新鲜度 fresh
-
-// 获取当前日期（YYYY-MM-DD格式）
-export function getTodayDate(): string {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, '0');
-  const day = String(today.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
-
-// 获取当前日期（中文格式）
-export function getTodayDateCN(): string {
-  const today = new Date();
-  return today.toLocaleDateString('zh-CN', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    weekday: 'long',
-  });
-}
-
-// 计算未来日期
-export function getFutureDate(days: number): string {
-  const date = new Date();
-  date.setDate(date.getDate() + days);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
 
 export interface AINewsItem {
   id: string;
@@ -52,8 +22,8 @@ export interface BandaiProduct {
   price: string;
   priceJPY?: number;
   priceCNY?: number;
-  releaseDate: string; // 发售日期
-  announceDate?: string; // 发布日期
+  releaseDate: string;
+  announceDate?: string;
   type?: string;
   image?: string;
   url?: string;
@@ -66,8 +36,8 @@ export interface HotToysProduct {
   price: string;
   priceHKD?: number;
   priceCNY?: number;
-  releaseDate: string; // 出货日期
-  announceDate: string; // 发布/预定日期
+  releaseDate: string;
+  announceDate: string;
   status?: string;
   image?: string;
   url?: string;
@@ -128,13 +98,24 @@ export interface DailyPush {
   };
 }
 
-// 今日数据
-const today = getTodayDate();
-const todayCN = getTodayDateCN();
+// 获取日期函数
+export function getTodayDate(): string {
+  return '2026-02-28';
+}
 
+export function getTodayDateCN(): string {
+  return new Date('2026-02-28').toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    weekday: 'long',
+  });
+}
+
+// 今日数据
 export const todayPush: DailyPush = {
-  id: today,
-  date: today,
+  id: '2026-02-28',
+  date: '2026-02-28',
   aiNews: {
     keywords: ["AI","大模型","具身智能","AI应用","硬件"],
     items: [
@@ -452,12 +433,7 @@ export const todayPush: DailyPush = {
   },
 };
 
-// 历史数据
-export const historyPushes: DailyPush[] = [
-  todayPush,
-];
-
-// 汇率数据
+// 汇率
 export const exchangeRates = {
   jpy: 0.048,
   hkd: 0.92,
