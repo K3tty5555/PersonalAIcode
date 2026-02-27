@@ -1,0 +1,197 @@
+{
+  "id": "2026-02-27",
+  "date": "2026-02-27",
+  "generatedAt": "2026-02-27T10:48:34.604Z",
+  "aiNews": {
+    "keywords": [
+      "B站",
+      "视频"
+    ],
+    "items": [
+      {
+        "id": "bili-BV1xxfYBDEoG",
+        "rank": 1,
+        "title": "我永远无法原谅星穹铁道",
+        "keywords": [
+          "B站",
+          "视频"
+        ],
+        "highlight": "UP主: 崩坏星穹铁道 | 285.7万播放",
+        "url": "https://www.bilibili.com/video/BV1xxfYBDEoG",
+        "source": "Bilibili"
+      },
+      {
+        "id": "bili-BV1wuA1zRE8T",
+        "rank": 2,
+        "title": "武侠先锋《影之刃零》的全球探索之路",
+        "keywords": [
+          "B站",
+          "视频"
+        ],
+        "highlight": "UP主: 新华社 | 134.2万播放",
+        "url": "https://www.bilibili.com/video/BV1wuA1zRE8T",
+        "source": "Bilibili"
+      },
+      {
+        "id": "bili-BV1CLA6zLEf8",
+        "rank": 3,
+        "title": "【B站AI创作大赛-开放赛道】地球的五次生物大灭绝，你最想体验哪一次？曾经最强大的生物，却逃不掉灭亡的命运",
+        "keywords": [
+          "B站",
+          "视频"
+        ],
+        "highlight": "UP主: 老艾论 | 91.2万播放",
+        "url": "https://www.bilibili.com/video/BV1CLA6zLEf8",
+        "source": "Bilibili"
+      },
+      {
+        "id": "bili-BV1WWAkzmEWg",
+        "rank": 4,
+        "title": "临时豁免权",
+        "keywords": [
+          "B站",
+          "视频"
+        ],
+        "highlight": "UP主: 累渠_ | 149.9万播放",
+        "url": "https://www.bilibili.com/video/BV1WWAkzmEWg",
+        "source": "Bilibili"
+      },
+      {
+        "id": "bili-BV1VNfbBUENM",
+        "rank": 5,
+        "title": "全网首发完结《生化危机9：安魂曲 》英配中字 猛男打法 全结局 全流程实况解说视频",
+        "keywords": [
+          "B站",
+          "视频"
+        ],
+        "highlight": "UP主: 友利奈绪大魔王丶 | 177.5万播放",
+        "url": "https://www.bilibili.com/video/BV1VNfbBUENM",
+        "source": "Bilibili"
+      },
+      {
+        "id": "bili-BV19XA2z5Epu",
+        "rank": 6,
+        "title": "学习兽医72小时，亲手给牛助孕接生是什么体验？",
+        "keywords": [
+          "B站",
+          "视频"
+        ],
+        "highlight": "UP主: 亿点点不一样 | 15.4万播放",
+        "url": "https://www.bilibili.com/video/BV19XA2z5Epu",
+        "source": "Bilibili"
+      },
+      {
+        "id": "bili-BV1yCACzXEDT",
+        "rank": 7,
+        "title": "《虚环》首测预告丨「初见回」测试招募开启！",
+        "keywords": [
+          "B站",
+          "视频"
+        ],
+        "highlight": "UP主: 虚环 | 54.1万播放",
+        "url": "https://www.bilibili.com/video/BV1yCACzXEDT",
+        "source": "Bilibili"
+      },
+      {
+        "id": "bili-BV1fTArzzEXn",
+        "rank": 8,
+        "title": "【暗区突围手游PV】艾薇塔重返卡莫纳",
+        "keywords": [
+          "B站",
+          "视频"
+        ],
+        "highlight": "UP主: 暗区突围 | 90.0万播放",
+        "url": "https://www.bilibili.com/video/BV1fTArzzEXn",
+        "source": "Bilibili"
+      },
+      {
+        "id": "bili-BV13VfYBfEnr",
+        "rank": 9,
+        "title": "鬼抓人赏金赛！",
+        "keywords": [
+          "B站",
+          "视频"
+        ],
+        "highlight": "UP主: 超能少年max | 417.6万播放",
+        "url": "https://www.bilibili.com/video/BV13VfYBfEnr",
+        "source": "Bilibili"
+      },
+      {
+        "id": "bili-BV1jXcKzNEdX",
+        "rank": 10,
+        "title": "【独家】有兽焉 第五季 第3集  灵魂互换【总第51集】",
+        "keywords": [
+          "B站",
+          "视频"
+        ],
+        "highlight": "UP主: 哔哩哔哩国创 | 31.2万播放",
+        "url": "https://www.bilibili.com/video/BV1jXcKzNEdX",
+        "source": "Bilibili"
+      }
+    ]
+  },
+  "gameDeals": {
+    "steam": [
+      {
+        "id": "steam-1086940",
+        "name": "博德之门3",
+        "originalPrice": "¥298",
+        "discountPrice": "¥224",
+        "discount": "-25%",
+        "type": "daily-deal",
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/3dd81008e9c385caf68152450c22353f6a8abec9/capsule_184x69.jpg?t=1765505948"
+      },
+      {
+        "id": "steam-1771300",
+        "name": "天国：拯救2",
+        "originalPrice": "¥228",
+        "discountPrice": "¥114",
+        "discount": "-50%",
+        "type": "historical-low",
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/93e28946c46f09d761bbfab1e17e8c1c4a8323a0/capsule_184x69.jpg?t=1769507535"
+      },
+      {
+        "id": "steam-2183900",
+        "name": "Warhammer 40,000: 星际战士2",
+        "originalPrice": "¥249",
+        "discountPrice": "¥82",
+        "discount": "-67%",
+        "type": "historical-low",
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2183900/d1f871399bd69702df42f14d78d0e09ce5b37b06/capsule_184x69_alt_assets_11.jpg?t=1772125422"
+      },
+      {
+        "id": "steam-3527290",
+        "name": "PEAK",
+        "originalPrice": "¥33",
+        "discountPrice": "¥20",
+        "discount": "-38%",
+        "type": "daily-deal",
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3527290/1844964d7a353e50eb3cc979ea922729d8c1b0ad/capsule_184x69.jpg?t=1764003551"
+      },
+      {
+        "id": "steam-3159330",
+        "name": "刺客信条：影",
+        "originalPrice": "¥348",
+        "discountPrice": "¥174",
+        "discount": "-50%",
+        "type": "historical-low",
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3159330/5960b68c44465f7ad8fd75b9dbb277d0cac23479/capsule_184x69_schinese.jpg?t=1770145731"
+      },
+      {
+        "id": "steam-621830",
+        "name": "WRC 7 FIA World Rally Championship",
+        "originalPrice": "¥70",
+        "discountPrice": "¥7",
+        "discount": "-90%",
+        "type": "new-low",
+        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/621830/capsule_184x69.jpg?t=1725354050"
+      }
+    ],
+    "playstation": [],
+    "nintendo": {
+      "hasDeals": false,
+      "deals": [],
+      "note": "请访问 Nintendo eShop 查看优惠"
+    }
+  }
+}
