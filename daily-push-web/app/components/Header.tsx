@@ -1,114 +1,65 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Moon, Sun, Newspaper, Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Newspaper } from 'lucide-react';
 
 export default function Header() {
-  const [isDark, setIsDark] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDark]);
-
-  const navItems = [
-    { label: '今日资讯', href: '#today' },
-    { label: 'AI热点', href: '#ai' },
-    { label: '模型手办', href: '#toys' },
-    { label: '游戏折扣', href: '#games' },
-  ];
-
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass py-3' : 'bg-transparent py-5'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+        scrolled
+          ? 'bg-white/80 backdrop-blur-xl border-b border-gray-200/50'
+          : 'bg-transparent'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="flex items-center justify-between h-14">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-zinc-900 to-zinc-700 dark:from-white dark:to-zinc-300 flex items-center justify-center transition-transform group-hover:scale-105">
-              <Newspaper className="w-5 h-5 text-white dark:text-zinc-900" />
+          <a href="#" className="flex items-center gap-2.5 group">
+            <div className={`w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 ${
+              scrolled
+                ? 'bg-gradient-to-br from-blue-500 to-blue-600 shadow-blue-500/20'
+                : 'bg-gradient-to-br from-gray-900 to-gray-700'
+            } shadow-lg group-hover:scale-105`}>
+              <Newspaper className="w-4 h-4 text-white" />
             </div>
-            <span className="font-semibold text-lg tracking-tight">Daily Push</span>
+            <span className={`font-semibold text-sm tracking-tight transition-colors ${
+              scrolled ? 'text-gray-900' : 'text-gray-900'
+            }`}>
+              Daily Push
+            </span>
           </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="px-4 py-2 text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* Actions */}
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsDark(!isDark)}
-              className="rounded-full"
-            >
-              {isDark ? (
-                <Sun className="w-5 h-5" />
-              ) : (
-                <Moon className="w-5 h-5" />
-              )}
-            </Button>
-
-            {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden rounded-full"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 border-t border-zinc-200 dark:border-zinc-800 pt-4">
-            <div className="flex flex-col gap-2">
-              {navItems.map((item) => (
+          {/* Navigation */}
+          <nav className="flex items-center gap-1">
+            {['AI 热点', '收藏模型', '游戏折扣'].map((item, index) => {
+              const href = ['#ai', '#toys', '#games'][index];
+              return (
                 <a
-                  key={item.label}
-                  href={item.href}
-                  className="px-4 py-2 text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  key={item}
+                  href={href}
+                  className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+                    scrolled
+                      ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-100/80'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-white/50'
+                  }`}
                 >
-                  {item.label}
+                  {item}
                 </a>
-              ))}
-            </div>
+              );
+            })}
           </nav>
-        )}
+        </div>
       </div>
     </header>
   );

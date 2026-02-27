@@ -1,7 +1,8 @@
 {
   "success": true,
   "date": "2026-02-27",
-  "source": "skill",
+  "source": "skill-v2",
   "isFresh": true,
-  "timestamp": "2026-02-27T15:17:48.207Z"
+  "confidence": 100,
+  "timestamp": "2026-02-27T15:59:00.242Z"
 }

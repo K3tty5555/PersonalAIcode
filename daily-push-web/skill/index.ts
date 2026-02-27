@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-// Skill 统一入口
-// 整合数据生成和网站同步
+// Skill 统一入口 V2
+// 整合数据生成和网站同步 - 使用真实数据源
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { generateDailyData, saveDailyData } from './generator';
-import { getTodayDate, getFutureDate } from './config';
+import { generateDailyData, saveDailyData, healthCheck } from './generator-v2';
+import { getTodayDate } from './config';
 
 // 路径配置
 const PATHS = {
@@ -15,7 +15,7 @@ const PATHS = {
   webSyncStatus: './lib/sync-status.json',
 } as const;
 
-// 数据类型定义（与 generator.ts 保持一致）
+// 数据类型定义
 interface DailyPushData {
   date: string;
   keywords: string[];
@@ -30,6 +30,11 @@ interface DailyPushData {
     note?: string;
   };
   generatedAt: string;
+  dataQuality: {
+    freshness: 'fresh' | 'warning' | 'stale';
+    sources: string[];
+    confidence: number;
+  };
 }
 
 // 读取生成的数据文件
@@ -53,9 +58,10 @@ function readGeneratedData(date?: string): DailyPushData | null {
 
 // 生成 TypeScript 数据文件
 function generateDataTS(data: DailyPushData): string {
-  return `// 资讯数据类型定义
+  return `// 自动生成的数据文件
 // 生成时间: ${data.generatedAt}
-// 数据来源: skill 每日推送
+// 数据来源: skill 每日推送 (V2)
+// 数据质量: 置信度 ${data.dataQuality.confidence}%, 新鲜度 ${data.dataQuality.freshness}
 
 // 获取当前日期（YYYY-MM-DD格式）
 export function getTodayDate(): string {
@@ -95,6 +101,8 @@ export interface AINewsItem {
   highlight: string;
   url?: string;
   source?: string;
+  image?: string;
+  publishTime?: string;
 }
 
 export interface BandaiProduct {
@@ -131,6 +139,7 @@ export interface SteamDeal {
   discount: string;
   type: 'new-low' | 'historical-low' | 'daily-deal';
   image?: string;
+  url?: string;
 }
 
 export interface PSDeal {
@@ -142,6 +151,7 @@ export interface PSDeal {
   eventName: string;
   validUntil: string;
   image?: string;
+  url?: string;
 }
 
 export interface SwitchDeal {
@@ -207,7 +217,7 @@ export const exchangeRates = {
 }
 
 // 同步数据到网站目录
-function syncToWebsite(data: DailyPushData): boolean {
+async function syncToWebsite(data: DailyPushData): Promise<boolean> {
   try {
     console.log('\n🔄 同步数据到网站...');
 
@@ -233,8 +243,9 @@ function syncToWebsite(data: DailyPushData): boolean {
     const status = {
       success: true,
       date: data.date,
-      source: 'skill',
-      isFresh: true,
+      source: 'skill-v2',
+      isFresh: data.dataQuality.freshness === 'fresh',
+      confidence: data.dataQuality.confidence,
       timestamp: new Date().toISOString(),
     };
     fs.writeFileSync(statusPath, JSON.stringify(status, null, 2), 'utf-8');
@@ -248,8 +259,8 @@ function syncToWebsite(data: DailyPushData): boolean {
 }
 
 // 主流程
-function run(options: { generate?: boolean; sync?: boolean; date?: string } = {}) {
-  console.log('🚀 Skill 启动\n');
+async function run(options: { generate?: boolean; sync?: boolean; date?: string } = {}) {
+  console.log('🚀 Skill V2 启动\n');
 
   const { generate = true, sync = true, date } = options;
 
@@ -257,10 +268,14 @@ function run(options: { generate?: boolean; sync?: boolean; date?: string } = {}
 
   // 1. 生成数据
   if (generate) {
-    console.log('📦 步骤 1: 生成数据\n');
-    const result = generateDailyData(date);
-    saveDailyData(result);
-    data = result;
+    console.log('📦 步骤 1: 生成数据 (使用真实数据源)\n');
+    try {
+      data = await generateDailyData(date);
+      saveDailyData(data);
+    } catch (error) {
+      console.error('❌ 数据生成失败:', error);
+      process.exit(1);
+    }
   }
 
   // 2. 读取数据（如果没有生成）
@@ -271,15 +286,29 @@ function run(options: { generate?: boolean; sync?: boolean; date?: string } = {}
   // 3. 同步到网站
   if (sync && data) {
     console.log('\n📦 步骤 2: 同步到网站\n');
-    const success = syncToWebsite(data);
+    const success = await syncToWebsite(data);
     if (!success) {
       process.exit(1);
     }
   }
 
-  console.log('\n✅ 全部完成！');
+  // 4. 健康检查
+  console.log('\n📦 步骤 3: 健康检查\n');
+  const health = await healthCheck();
+  if (health.healthy) {
+    console.log('✅ 系统健康');
+  } else {
+    console.log('⚠️ 发现警告:');
+    health.issues.forEach(i => console.log(`   - ${i}`));
+  }
+
+  console.log('\n' + '='.repeat(50));
+  console.log('✅ 全部完成！');
+  console.log('='.repeat(50));
   console.log(`\n📊 数据摘要 (${data?.date}):`);
-  console.log(`   AI热点: ${data?.news.length} 条`);
+  console.log(`   AI热点: ${data?.news.length} 条 (来源: ${data?.dataQuality.sources.join(', ')})`);
+  console.log(`   数据置信度: ${data?.dataQuality.confidence}%`);
+  console.log(`   新鲜度: ${data?.dataQuality.freshness}`);
   console.log(`   万代: ${data?.bandai.length} 款`);
   console.log(`   Hot Toys: ${data?.hotToys.length} 款`);
   console.log(`   Steam: ${data?.steam.length} 款`);
@@ -288,7 +317,7 @@ function run(options: { generate?: boolean; sync?: boolean; date?: string } = {}
 // CLI 解析
 function parseArgs() {
   const args = process.argv.slice(2);
-  const options: { generate?: boolean; sync?: boolean; date?: string } = {
+  const options: { generate?: boolean; sync?: boolean; date?: string; health?: boolean } = {
     generate: true,
     sync: true,
   };
@@ -309,6 +338,9 @@ function parseArgs() {
       case '-d':
         options.date = args[++i];
         break;
+      case '--health':
+        options.health = true;
+        break;
       case '--help':
       case '-h':
         console.log(`
@@ -318,6 +350,7 @@ Options:
   --generate-only    仅生成数据，不同步
   --sync-only        仅同步，不生成（使用已有数据）
   --date, -d DATE    指定日期 (YYYY-MM-DD)
+  --health           运行健康检查
   --help, -h         显示帮助
 
 Examples:
@@ -336,7 +369,25 @@ Examples:
 // 执行
 if (require.main === module) {
   const options = parseArgs();
-  run(options);
+
+  if (options.health) {
+    healthCheck().then(health => {
+      console.log(health.healthy ? '✅ 系统健康' : '⚠️ 需要关注');
+      if (health.issues.length > 0) {
+        console.log('\n问题:');
+        health.issues.forEach(i => console.log(`  - ${i}`));
+      }
+      if (health.recommendations.length > 0) {
+        console.log('\n建议:');
+        health.recommendations.forEach(r => console.log(`  - ${r}`));
+      }
+    });
+  } else {
+    run(options).catch(error => {
+      console.error('❌ 执行失败:', error);
+      process.exit(1);
+    });
+  }
 }
 
-export { run, generateDailyData, syncToWebsite };
+export { run, generateDailyData, syncToWebsite, healthCheck };
