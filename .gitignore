@@ -1,0 +1,6 @@
+nodejs/
+CC Switch.app/
+*.zip
+*.pkg
+*.tar.gz
+.DS_Store
