@@ -18,6 +18,7 @@ const PATHS = {
 // 数据类型定义
 interface DailyPushData {
   date: string;
+  yearMonth: string;
   keywords: string[];
   news: any[];
   bandai: any[];
@@ -112,7 +113,8 @@ export interface BandaiProduct {
   price: string;
   priceJPY?: number;
   priceCNY?: number;
-  releaseDate: string;
+  releaseDate: string; // 发售日期
+  announceDate?: string; // 发布日期
   type?: string;
   image?: string;
   url?: string;
@@ -125,10 +127,12 @@ export interface HotToysProduct {
   price: string;
   priceHKD?: number;
   priceCNY?: number;
-  announceDate: string;
+  releaseDate: string; // 出货日期
+  announceDate: string; // 发布/预定日期
   status?: string;
   image?: string;
   url?: string;
+  source?: string;
 }
 
 export interface SteamDeal {

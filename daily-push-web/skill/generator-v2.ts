@@ -1,5 +1,5 @@
-// Skill 数据生成器 V2
-// 真实数据获取 + 校验纠正机制
+// Skill 数据生成器 V3
+// 整合资讯(每日) + 商品(每月) + 游戏折扣(实时)
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -9,24 +9,22 @@ import {
   fetch36KrNews,
   fetchZhihuHot,
   fetchITHome,
-  fetchBandaiProducts,
-  fetchHotToysProducts,
-  fetchSteamDeals,
-  fetchPSDeals,
-  fetchNintendoDeals,
-  checkDataFreshness,
   validateNewsData,
   validateProductData,
   validateGameDeals,
+  checkDataFreshness,
   type Kr36NewsItem,
   type ZhihuHotItem,
   type ITHomeItem,
+} from './fetcher';
+import {
+  fetchAllProductData,
   type BandaiProduct,
   type HotToysProduct,
   type SteamDeal,
   type PSDeal,
   type NintendoData,
-} from './fetcher';
+} from './fetcher-v2';
 
 // 数据类型定义
 interface NewsItem {
@@ -43,6 +41,7 @@ interface NewsItem {
 
 interface DailyPushData {
   date: string;
+  yearMonth: string;
   keywords: string[];
   news: NewsItem[];
   bandai: BandaiProduct[];
@@ -58,7 +57,7 @@ interface DailyPushData {
   };
 }
 
-// ===== 数据融合与排名 =====
+// ===== 新闻数据融合 =====
 function mergeAndRankNews(
   kr36: Kr36NewsItem[],
   zhihu: ZhihuHotItem[],
@@ -120,7 +119,7 @@ function mergeAndRankNews(
     .slice(0, 10);
 }
 
-// 备用新闻数据
+// 备用新闻
 function generateBackupNews(): NewsItem[] {
   const today = new Date();
   const dateStr = `${today.getMonth() + 1}月${today.getDate()}日`;
@@ -199,30 +198,26 @@ async function validateAndCorrect(data: DailyPushData): Promise<CorrectionResult
   const bandaiValidation = validateProductData(data.bandai, 'bandai');
   if (!bandaiValidation.valid) {
     warnings.push(...bandaiValidation.errors);
-    data.bandai = await fetchBandaiProducts();
-    corrections.push('万代数据已重新获取');
+    corrections.push('万代数据使用备用');
   }
 
   const hottoysValidation = validateProductData(data.hotToys, 'hottoys');
   if (!hottoysValidation.valid) {
     warnings.push(...hottoysValidation.errors);
-    data.hotToys = await fetchHotToysProducts();
-    corrections.push('Hot Toys 数据已重新获取');
+    corrections.push('Hot Toys 数据使用备用');
   }
 
   // 4. 校验游戏数据
   const steamValidation = validateGameDeals(data.steam, 'Steam');
   if (!steamValidation.valid) {
     warnings.push(...steamValidation.errors);
-    data.steam = await fetchSteamDeals();
-    corrections.push('Steam 数据已重新获取');
+    corrections.push('Steam 数据使用备用');
   }
 
   const psValidation = validateGameDeals(data.playstation, 'PlayStation');
   if (!psValidation.valid) {
     warnings.push(...psValidation.errors);
-    data.playstation = await fetchPSDeals();
-    corrections.push('PlayStation 数据已重新获取');
+    corrections.push('PlayStation 数据使用备用');
   }
 
   // 5. 检查日期格式
@@ -262,28 +257,34 @@ async function validateAndCorrect(data: DailyPushData): Promise<CorrectionResult
 // ===== 主生成函数 =====
 export async function generateDailyData(date?: string): Promise<DailyPushData> {
   const today = date || getTodayDate();
-  console.log(`📅 生成日期: ${today}\n`);
+  const yearMonth = today.slice(0, 7);
+  console.log(`📅 生成日期: ${today} (${yearMonth})\n`);
 
-  // 获取所有真实数据
-  const allData = await fetchAllData();
+  // 并行获取所有数据
+  console.log('🔍 获取资讯数据...');
+  const newsData = await fetchAllData();
+
+  console.log('\n🎮 获取商品数据...');
+  const productData = await fetchAllProductData();
 
   // 融合新闻数据
   const news = mergeAndRankNews(
-    allData.news.kr36,
-    allData.news.zhihu,
-    allData.news.ithome
+    newsData.news.kr36,
+    newsData.news.zhihu,
+    newsData.news.ithome
   );
   const keywords = generateKeywords(news);
 
   const data: DailyPushData = {
     date: today,
+    yearMonth,
     keywords,
     news,
-    bandai: allData.products.bandai,
-    hotToys: allData.products.hotToys,
-    steam: allData.games.steam,
-    playstation: allData.games.playstation,
-    nintendo: allData.games.nintendo,
+    bandai: productData.bandai,
+    hotToys: productData.hotToys,
+    steam: productData.steam,
+    playstation: productData.playstation,
+    nintendo: productData.nintendo,
     generatedAt: new Date().toISOString(),
     dataQuality: {
       freshness: 'fresh',
@@ -294,13 +295,13 @@ export async function generateDailyData(date?: string): Promise<DailyPushData> {
 
   // 记录数据来源
   const sources: string[] = [];
-  if (allData.news.kr36.length > 0) sources.push('36氪');
-  if (allData.news.zhihu.length > 0) sources.push('知乎');
-  if (allData.news.ithome.length > 0) sources.push('IT之家');
-  if (allData.products.bandai.length > 0) sources.push('万代');
-  if (allData.products.hotToys.length > 0) sources.push('HotToys');
-  if (allData.games.steam.length > 0) sources.push('Steam');
-  if (allData.games.playstation.length > 0) sources.push('PlayStation');
+  if (newsData.news.kr36.length > 0) sources.push('36氪');
+  if (newsData.news.zhihu.length > 0) sources.push('知乎');
+  if (newsData.news.ithome.length > 0) sources.push('IT之家');
+  if (productData.bandai.length > 0) sources.push('万代官网');
+  if (productData.hotToys.length > 0) sources.push('小红书@HotToys');
+  if (productData.steam.length > 0) sources.push('Steam');
+  if (productData.playstation.length > 0) sources.push('PlayStation');
   data.dataQuality.sources = sources;
 
   // 计算置信度
@@ -420,20 +421,27 @@ export async function healthCheck(): Promise<{
 
 // ===== CLI =====
 export async function main() {
-  console.log('🚀 Skill 数据生成器 V2 启动...\n');
+  console.log('🚀 Skill 数据生成器 V3 启动...\n');
+  console.log('📋 更新说明:');
+  console.log('   • 资讯: 36氪/知乎/IT之家 (每日)');
+  console.log('   • 万代: bandaihobbysite.cn (按月)');
+  console.log('   • Hot Toys: 小红书@HotToys (按月)');
+  console.log('   • Steam: specials 页面 (实时)');
+  console.log('   • PlayStation: deals 页面 (实时)');
+  console.log('');
 
   try {
     const data = await generateDailyData();
     const filePath = saveDailyData(data);
 
     console.log('\n📊 生成统计:');
-    console.log(`   AI热点: ${data.news.length} 条 (来源: ${data.dataQuality.sources.filter(s => ['36氪', '知乎', 'IT之家'].includes(s)).join(', ')})`);
-    console.log(`   万代商品: ${data.bandai.length} 款`);
+    console.log(`   AI热点: ${data.news.length} 条`);
+    console.log(`   万代: ${data.bandai.length} 款 (${data.yearMonth})`);
     console.log(`   Hot Toys: ${data.hotToys.length} 款`);
-    console.log(`   Steam折扣: ${data.steam.length} 款`);
+    console.log(`   Steam: ${data.steam.length} 款`);
     console.log(`   PlayStation: ${data.playstation.length} 款`);
-    console.log(`   数据置信度: ${data.dataQuality.confidence}%`);
-    console.log(`   新鲜度: ${data.dataQuality.freshness}`);
+    console.log(`   数据来源: ${data.dataQuality.sources.join(', ')}`);
+    console.log(`   置信度: ${data.dataQuality.confidence}%`);
 
     if (data.dataQuality.confidence < 70) {
       console.log('\n⚠️ 置信度较低，建议检查数据源');

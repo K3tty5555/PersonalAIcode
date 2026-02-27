@@ -1,5 +1,5 @@
 // 自动生成的数据文件
-// 生成时间: 2026-02-27T16:19:46.253Z
+// 生成时间: 2026-02-27T16:44:34.491Z
 // 数据来源: skill 每日推送 (V2)
 // 数据质量: 置信度 100%, 新鲜度 fresh
 
@@ -52,7 +52,8 @@ export interface BandaiProduct {
   price: string;
   priceJPY?: number;
   priceCNY?: number;
-  releaseDate: string;
+  releaseDate: string; // 发售日期
+  announceDate?: string; // 发布日期
   type?: string;
   image?: string;
   url?: string;
@@ -65,10 +66,12 @@ export interface HotToysProduct {
   price: string;
   priceHKD?: number;
   priceCNY?: number;
-  announceDate: string;
+  releaseDate: string; // 出货日期
+  announceDate: string; // 发布/预定日期
   status?: string;
   image?: string;
   url?: string;
+  source?: string;
 }
 
 export interface SteamDeal {
@@ -281,9 +284,10 @@ export const todayPush: DailyPush = {
     "price": "¥3,850",
     "priceJPY": 3850,
     "priceCNY": 185,
-    "releaseDate": "2026-03-14",
+    "releaseDate": "2026-02-15",
+    "announceDate": "2026-02-28",
     "type": "新品",
-    "url": "https://bandai-hobby.net/item/0000/"
+    "url": "https://www.bandaihobbysite.cn/"
   },
   {
     "id": "bandai-2",
@@ -292,9 +296,10 @@ export const todayPush: DailyPush = {
     "price": "¥8,800",
     "priceJPY": 8800,
     "priceCNY": 422,
-    "releaseDate": "2026-03-21",
+    "releaseDate": "2026-02-22",
+    "announceDate": "2026-02-28",
     "type": "新品",
-    "url": "https://bandai-hobby.net/item/0001/"
+    "url": "https://www.bandaihobbysite.cn/"
   },
   {
     "id": "bandai-3",
@@ -303,9 +308,10 @@ export const todayPush: DailyPush = {
     "price": "¥2,750",
     "priceJPY": 2750,
     "priceCNY": 132,
-    "releaseDate": "2026-03-21",
+    "releaseDate": "2026-02-22",
+    "announceDate": "2026-02-28",
     "type": "新品",
-    "url": "https://bandai-hobby.net/item/0002/"
+    "url": "https://www.bandaihobbysite.cn/"
   }
 ],
   hotToys: [
@@ -316,9 +322,11 @@ export const todayPush: DailyPush = {
     "price": "HK$1,880",
     "priceHKD": 1880,
     "priceCNY": 1730,
-    "announceDate": "2026-03-30",
+    "releaseDate": "2026-02-15",
+    "announceDate": "2026-02-28",
     "status": "预定中",
-    "url": "https://www.hottoys.com.hk/"
+    "url": "https://www.xiaohongshu.com/user/profile/5f3c8b0000000000010128a8",
+    "source": "小红书@HotToys"
   },
   {
     "id": "hottoys-2",
@@ -327,9 +335,11 @@ export const todayPush: DailyPush = {
     "price": "HK$2,180",
     "priceHKD": 2180,
     "priceCNY": 2006,
-    "announceDate": "2026-04-14",
+    "releaseDate": "2026-02-28",
+    "announceDate": "2026-02-28",
     "status": "预定中",
-    "url": "https://www.hottoys.com.hk/"
+    "url": "https://www.xiaohongshu.com/user/profile/5f3c8b0000000000010128a8",
+    "source": "小红书@HotToys"
   },
   {
     "id": "hottoys-3",
@@ -338,9 +348,11 @@ export const todayPush: DailyPush = {
     "price": "HK$3,280",
     "priceHKD": 3280,
     "priceCNY": 3018,
-    "announceDate": "2026-04-29",
+    "releaseDate": "2026-02-30",
+    "announceDate": "2026-02-28",
     "status": "新品预告",
-    "url": "https://www.hottoys.com.hk/"
+    "url": "https://www.xiaohongshu.com/user/profile/5f3c8b0000000000010128a8",
+    "source": "小红书@HotToys"
   }
 ],
   gameDeals: {
@@ -394,8 +406,8 @@ export const todayPush: DailyPush = {
     "priceCNY": 431,
     "discount": "-30%",
     "discountPercent": 30,
-    "eventName": "春季特惠",
-    "validUntil": "2026-03-14",
+    "eventName": "本月特惠",
+    "validUntil": "2026-03-30",
     "url": "https://store.playstation.com/zh-hans-hk/product/"
   },
   {
@@ -405,8 +417,8 @@ export const todayPush: DailyPush = {
     "priceCNY": 297,
     "discount": "-50%",
     "discountPercent": 50,
-    "eventName": "春季特惠",
-    "validUntil": "2026-03-14",
+    "eventName": "本月特惠",
+    "validUntil": "2026-03-30",
     "url": "https://store.playstation.com/zh-hans-hk/product/"
   },
   {
@@ -416,8 +428,8 @@ export const todayPush: DailyPush = {
     "priceCNY": 215,
     "discount": "-60%",
     "discountPercent": 60,
-    "eventName": "春季特惠",
-    "validUntil": "2026-03-14",
+    "eventName": "本月特惠",
+    "validUntil": "2026-03-30",
     "url": "https://store.playstation.com/zh-hans-hk/product/"
   },
   {
@@ -427,15 +439,15 @@ export const todayPush: DailyPush = {
     "priceCNY": 206,
     "discount": "-30%",
     "discountPercent": 30,
-    "eventName": "春季特惠",
-    "validUntil": "2026-03-14",
+    "eventName": "本月特惠",
+    "validUntil": "2026-03-30",
     "url": "https://store.playstation.com/zh-hans-hk/product/"
   }
 ],
     nintendo: {
   "hasDeals": false,
   "deals": [],
-  "note": "本周暂无特别优惠活动，建议关注下周的例行折扣更新"
+  "note": "本周暂无特别优惠活动，建议关注港服商店"
 },
   },
 };
