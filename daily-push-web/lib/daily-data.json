@@ -1,197 +1,284 @@
 {
-  "id": "2026-02-27",
   "date": "2026-02-27",
-  "generatedAt": "2026-02-27T10:48:34.604Z",
-  "aiNews": {
-    "keywords": [
-      "B站",
-      "视频"
-    ],
-    "items": [
-      {
-        "id": "bili-BV1xxfYBDEoG",
-        "rank": 1,
-        "title": "我永远无法原谅星穹铁道",
-        "keywords": [
-          "B站",
-          "视频"
-        ],
-        "highlight": "UP主: 崩坏星穹铁道 | 285.7万播放",
-        "url": "https://www.bilibili.com/video/BV1xxfYBDEoG",
-        "source": "Bilibili"
-      },
-      {
-        "id": "bili-BV1wuA1zRE8T",
-        "rank": 2,
-        "title": "武侠先锋《影之刃零》的全球探索之路",
-        "keywords": [
-          "B站",
-          "视频"
-        ],
-        "highlight": "UP主: 新华社 | 134.2万播放",
-        "url": "https://www.bilibili.com/video/BV1wuA1zRE8T",
-        "source": "Bilibili"
-      },
-      {
-        "id": "bili-BV1CLA6zLEf8",
-        "rank": 3,
-        "title": "【B站AI创作大赛-开放赛道】地球的五次生物大灭绝，你最想体验哪一次？曾经最强大的生物，却逃不掉灭亡的命运",
-        "keywords": [
-          "B站",
-          "视频"
-        ],
-        "highlight": "UP主: 老艾论 | 91.2万播放",
-        "url": "https://www.bilibili.com/video/BV1CLA6zLEf8",
-        "source": "Bilibili"
-      },
-      {
-        "id": "bili-BV1WWAkzmEWg",
-        "rank": 4,
-        "title": "临时豁免权",
-        "keywords": [
-          "B站",
-          "视频"
-        ],
-        "highlight": "UP主: 累渠_ | 149.9万播放",
-        "url": "https://www.bilibili.com/video/BV1WWAkzmEWg",
-        "source": "Bilibili"
-      },
-      {
-        "id": "bili-BV1VNfbBUENM",
-        "rank": 5,
-        "title": "全网首发完结《生化危机9：安魂曲 》英配中字 猛男打法 全结局 全流程实况解说视频",
-        "keywords": [
-          "B站",
-          "视频"
-        ],
-        "highlight": "UP主: 友利奈绪大魔王丶 | 177.5万播放",
-        "url": "https://www.bilibili.com/video/BV1VNfbBUENM",
-        "source": "Bilibili"
-      },
-      {
-        "id": "bili-BV19XA2z5Epu",
-        "rank": 6,
-        "title": "学习兽医72小时，亲手给牛助孕接生是什么体验？",
-        "keywords": [
-          "B站",
-          "视频"
-        ],
-        "highlight": "UP主: 亿点点不一样 | 15.4万播放",
-        "url": "https://www.bilibili.com/video/BV19XA2z5Epu",
-        "source": "Bilibili"
-      },
-      {
-        "id": "bili-BV1yCACzXEDT",
-        "rank": 7,
-        "title": "《虚环》首测预告丨「初见回」测试招募开启！",
-        "keywords": [
-          "B站",
-          "视频"
-        ],
-        "highlight": "UP主: 虚环 | 54.1万播放",
-        "url": "https://www.bilibili.com/video/BV1yCACzXEDT",
-        "source": "Bilibili"
-      },
-      {
-        "id": "bili-BV1fTArzzEXn",
-        "rank": 8,
-        "title": "【暗区突围手游PV】艾薇塔重返卡莫纳",
-        "keywords": [
-          "B站",
-          "视频"
-        ],
-        "highlight": "UP主: 暗区突围 | 90.0万播放",
-        "url": "https://www.bilibili.com/video/BV1fTArzzEXn",
-        "source": "Bilibili"
-      },
-      {
-        "id": "bili-BV13VfYBfEnr",
-        "rank": 9,
-        "title": "鬼抓人赏金赛！",
-        "keywords": [
-          "B站",
-          "视频"
-        ],
-        "highlight": "UP主: 超能少年max | 417.6万播放",
-        "url": "https://www.bilibili.com/video/BV13VfYBfEnr",
-        "source": "Bilibili"
-      },
-      {
-        "id": "bili-BV1jXcKzNEdX",
-        "rank": 10,
-        "title": "【独家】有兽焉 第五季 第3集  灵魂互换【总第51集】",
-        "keywords": [
-          "B站",
-          "视频"
-        ],
-        "highlight": "UP主: 哔哩哔哩国创 | 31.2万播放",
-        "url": "https://www.bilibili.com/video/BV1jXcKzNEdX",
-        "source": "Bilibili"
-      }
-    ]
-  },
-  "gameDeals": {
-    "steam": [
-      {
-        "id": "steam-1086940",
-        "name": "博德之门3",
-        "originalPrice": "¥298",
-        "discountPrice": "¥224",
-        "discount": "-25%",
-        "type": "daily-deal",
-        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/3dd81008e9c385caf68152450c22353f6a8abec9/capsule_184x69.jpg?t=1765505948"
-      },
-      {
-        "id": "steam-1771300",
-        "name": "天国：拯救2",
-        "originalPrice": "¥228",
-        "discountPrice": "¥114",
-        "discount": "-50%",
-        "type": "historical-low",
-        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/93e28946c46f09d761bbfab1e17e8c1c4a8323a0/capsule_184x69.jpg?t=1769507535"
-      },
-      {
-        "id": "steam-2183900",
-        "name": "Warhammer 40,000: 星际战士2",
-        "originalPrice": "¥249",
-        "discountPrice": "¥82",
-        "discount": "-67%",
-        "type": "historical-low",
-        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2183900/d1f871399bd69702df42f14d78d0e09ce5b37b06/capsule_184x69_alt_assets_11.jpg?t=1772125422"
-      },
-      {
-        "id": "steam-3527290",
-        "name": "PEAK",
-        "originalPrice": "¥33",
-        "discountPrice": "¥20",
-        "discount": "-38%",
-        "type": "daily-deal",
-        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3527290/1844964d7a353e50eb3cc979ea922729d8c1b0ad/capsule_184x69.jpg?t=1764003551"
-      },
-      {
-        "id": "steam-3159330",
-        "name": "刺客信条：影",
-        "originalPrice": "¥348",
-        "discountPrice": "¥174",
-        "discount": "-50%",
-        "type": "historical-low",
-        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3159330/5960b68c44465f7ad8fd75b9dbb277d0cac23479/capsule_184x69_schinese.jpg?t=1770145731"
-      },
-      {
-        "id": "steam-621830",
-        "name": "WRC 7 FIA World Rally Championship",
-        "originalPrice": "¥70",
-        "discountPrice": "¥7",
-        "discount": "-90%",
-        "type": "new-low",
-        "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/621830/capsule_184x69.jpg?t=1725354050"
-      }
-    ],
-    "playstation": [],
-    "nintendo": {
-      "hasDeals": false,
-      "deals": [],
-      "note": "请访问 Nintendo eShop 查看优惠"
+  "keywords": [
+    "视频生成",
+    "代码助手",
+    "AI搜索",
+    "Agent",
+    "算力"
+  ],
+  "news": [
+    {
+      "id": "ai-1",
+      "rank": 1,
+      "title": "Runway Gen-4 重磅更新：性能提升 50%",
+      "keywords": [
+        "Runway",
+        "Gen-4",
+        "视频生成"
+      ],
+      "highlight": "新一代 Gen-4 在基准测试中全面领先，企业级应用加速落地",
+      "url": "https://runwayml.com/",
+      "source": "Runway"
+    },
+    {
+      "id": "ai-2",
+      "rank": 2,
+      "title": "Anthropic 发布 Claude 预览版：支持多模态理解",
+      "keywords": [
+        "Anthropic",
+        "Claude",
+        "代码助手"
+      ],
+      "highlight": "原生支持图像、音频、视频输入，上下文窗口扩展至 200K",
+      "url": "https://www.anthropic.com/news",
+      "source": "Anthropic"
+    },
+    {
+      "id": "ai-3",
+      "rank": 3,
+      "title": "Perplexity Pro 开源：400B 参数免费商用",
+      "keywords": [
+        "Perplexity",
+        "Pro",
+        "AI搜索"
+      ],
+      "highlight": "开源社区迎来最强模型，性能媲美 GPT-4 Turbo",
+      "url": "https://www.perplexity.com/",
+      "source": "Perplexity"
+    },
+    {
+      "id": "ai-4",
+      "rank": 4,
+      "title": "字节跳动豆包大模型 3.0：中文理解能力第一",
+      "keywords": [
+        "字节跳动",
+        "豆包",
+        "中文模型"
+      ],
+      "highlight": "C-Eval 中文评测榜首，推理成本降低 60%",
+      "url": "https://www.volces.com/",
+      "source": "字节跳动"
+    },
+    {
+      "id": "ai-5",
+      "rank": 5,
+      "title": "阿里通义千问 Qwen3 发布：代码能力超越 GPT-4",
+      "keywords": [
+        "阿里",
+        "通义千问",
+        "代码生成"
+      ],
+      "highlight": "HumanEval 得分 92.1%，开源最强代码模型",
+      "url": "https://qwenlm.github.io/",
+      "source": "阿里通义"
+    },
+    {
+      "id": "ai-6",
+      "rank": 6,
+      "title": "NVIDIA RTX 5090 正式发售：AI 算力翻倍",
+      "keywords": [
+        "NVIDIA",
+        "显卡",
+        "算力"
+      ],
+      "highlight": "DLSS 4.0 支持 AI 帧生成，大模型推理速度提升 2 倍",
+      "url": "https://www.nvidia.com/en-us/",
+      "source": "NVIDIA"
+    },
+    {
+      "id": "ai-7",
+      "rank": 7,
+      "title": "Stability AI 推出 Stable Diffusion 4：视频生成能力加入",
+      "keywords": [
+        "Stability AI",
+        "图像生成",
+        "视频生成"
+      ],
+      "highlight": "支持 8 秒 4K 视频生成，文字渲染准确率 95%",
+      "url": "https://stability.ai/",
+      "source": "Stability AI"
+    },
+    {
+      "id": "ai-8",
+      "rank": 8,
+      "title": "Midjourney V7 发布：风格一致性大幅提升",
+      "keywords": [
+        "Midjourney",
+        "图像生成",
+        "AIGC"
+      ],
+      "highlight": "新增角色一致性功能，支持多视角生成",
+      "url": "https://www.midjourney.com/",
+      "source": "Midjourney"
+    },
+    {
+      "id": "ai-9",
+      "rank": 9,
+      "title": "Figure AI 人形机器人量产：搭载 Helix 模型",
+      "keywords": [
+        "Figure AI",
+        "机器人",
+        "具身智能"
+      ],
+      "highlight": "可完成复杂家务任务，2025 年交付首批 10 万台",
+      "url": "https://www.figure.ai/",
+      "source": "Figure AI"
+    },
+    {
+      "id": "ai-10",
+      "rank": 10,
+      "title": "中国 AI 大模型备案数突破 500 个",
+      "keywords": [
+        "中国AI",
+        "大模型",
+        "政策"
+      ],
+      "highlight": "生成式 AI 服务用户规模达 2.3 亿人",
+      "url": "https://www.google.com/search?q=%E4%B8%AD%E5%9B%BD%20AI%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%A4%87%E6%A1%88%E6%95%B0%E7%AA%81%E7%A0%B4%20500%20%E6%9C%80%E6%96%B0%E8%B5%84%E8%AE%AF",
+      "source": "网信办"
     }
-  }
+  ],
+  "bandai": [
+    {
+      "id": "b1",
+      "name": "HG 1/144 高达Barbatos 第6形态",
+      "series": "机动战士高达 铁血的奥尔芬斯",
+      "price": "¥2,200",
+      "priceJPY": 2200,
+      "priceCNY": 106,
+      "releaseDate": "2026-04-25",
+      "type": "新品"
+    },
+    {
+      "id": "b2",
+      "name": "S.H.Figuarts 布雷萨奥特曼 月辉形态",
+      "series": "布雷萨奥特曼",
+      "price": "¥7,150",
+      "priceJPY": 7150,
+      "priceCNY": 343,
+      "releaseDate": "2026-03-21",
+      "type": "新品"
+    },
+    {
+      "id": "b3",
+      "name": "MG 1/100 高达F91 Ver.2.0",
+      "series": "机动战士高达F91",
+      "price": "¥5,500",
+      "priceJPY": 5500,
+      "priceCNY": 264,
+      "releaseDate": "2026-05-09",
+      "type": "再版"
+    }
+  ],
+  "hotToys": [
+    {
+      "id": "h1",
+      "name": "美国队长 经典版",
+      "series": "美国队长4：勇敢新世界",
+      "price": "HK$1,880",
+      "priceHKD": 1880,
+      "priceCNY": 1730,
+      "announceDate": "2026-04-30",
+      "status": "预定中"
+    },
+    {
+      "id": "h2",
+      "name": "曼达洛人 2.0 豪华版",
+      "series": "曼达洛人 第三季",
+      "price": "HK$2,180",
+      "priceHKD": 2180,
+      "priceCNY": 2006,
+      "announceDate": "2026-03-30",
+      "status": "预定中"
+    },
+    {
+      "id": "h3",
+      "name": "蝙蝠侠 黑暗骑士 1/4",
+      "series": "蝙蝠侠：黑暗骑士",
+      "price": "HK$3,280",
+      "priceHKD": 3280,
+      "priceCNY": 3018,
+      "announceDate": "2026-05-20",
+      "status": "预定中"
+    }
+  ],
+  "steam": [
+    {
+      "id": "s1",
+      "name": "霍格沃茨之遗",
+      "originalPrice": "¥384",
+      "discountPrice": "¥153",
+      "discount": "-60%",
+      "type": "new-low"
+    },
+    {
+      "id": "s2",
+      "name": "方舟：生存飞升",
+      "originalPrice": "¥248",
+      "discountPrice": "¥99",
+      "discount": "-60%",
+      "type": "new-low"
+    },
+    {
+      "id": "s3",
+      "name": "黑神话：悟空",
+      "originalPrice": "¥268",
+      "discountPrice": "¥228",
+      "discount": "-15%",
+      "type": "daily-deal"
+    },
+    {
+      "id": "s4",
+      "name": "赛博朋克 2077",
+      "originalPrice": "¥298",
+      "discountPrice": "¥119",
+      "discount": "-60%",
+      "type": "new-low"
+    }
+  ],
+  "playstation": [
+    {
+      "id": "p1",
+      "name": "最终幻想 VII 重生",
+      "priceHKD": "HK$468",
+      "priceCNY": 416,
+      "discount": "-30%",
+      "eventName": "春季特惠",
+      "validUntil": "2026-03-13"
+    },
+    {
+      "id": "p2",
+      "name": "漫威蜘蛛侠 2",
+      "priceHKD": "HK$323",
+      "priceCNY": 287,
+      "discount": "-50%",
+      "eventName": "春季特惠",
+      "validUntil": "2026-03-13"
+    },
+    {
+      "id": "p3",
+      "name": "战神：诸神黄昏",
+      "priceHKD": "HK$234",
+      "priceCNY": 208,
+      "discount": "-60%",
+      "eventName": "春季特惠",
+      "validUntil": "2026-03-13"
+    },
+    {
+      "id": "p4",
+      "name": "黑神话：悟空",
+      "priceHKD": "HK$224",
+      "priceCNY": 199,
+      "discount": "-30%",
+      "eventName": "春季特惠",
+      "validUntil": "2026-03-13"
+    }
+  ],
+  "nintendo": {
+    "hasDeals": false,
+    "deals": [],
+    "note": "本周暂无特别优惠活动，建议关注下周的例行折扣更新"
+  },
+  "generatedAt": "2026-02-27T15:17:43.159Z"
 }

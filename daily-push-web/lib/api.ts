@@ -2,6 +2,80 @@
 
 import type { AINewsItem, SteamDeal, BandaiProduct, HotToysProduct } from './data';
 
+// 动态获取 Skill 数据的接口
+export interface SkillDataResult {
+  success: boolean;
+  data?: {
+    date: string;
+    aiNews: {
+      keywords: string[];
+      items: AINewsItem[];
+    };
+    bandai: BandaiProduct[];
+    hotToys: HotToysProduct[];
+    gameDeals: {
+      steam: SteamDeal[];
+      playstation: any[];
+      nintendo: {
+        hasDeals: boolean;
+        deals: any[];
+        note?: string;
+      };
+    };
+  };
+  source?: 'skill' | 'static' | 'error';
+  error?: string;
+}
+
+// 尝试从多个来源获取数据，按优先级排序：
+// 1. 本地 daily-data.json（如果存在且是今天的）
+// 2. 静态导入的 data.ts
+// 3. 兜底：静态数据
+export async function fetchSkillData(): Promise<SkillDataResult> {
+  try {
+    // 尝试读取本地 JSON 文件（由 sync-from-skill.ts 生成）
+    const response = await fetch('/api/daily-data');
+    if (response.ok) {
+      const data = await response.json();
+      return {
+        success: true,
+        data,
+        source: 'skill',
+      };
+    }
+  } catch (error) {
+    console.log('动态获取 skill 数据失败，使用静态数据');
+  }
+
+  // 如果动态获取失败，返回静态数据
+  return {
+    success: true,
+    source: 'static',
+  };
+}
+
+// 检查数据是否需要更新
+export async function checkDataFreshness(): Promise<{
+  isFresh: boolean;
+  lastUpdated: string;
+  needsUpdate: boolean;
+}> {
+  try {
+    const response = await fetch('/api/health');
+    if (response.ok) {
+      return await response.json();
+    }
+  } catch (error) {
+    console.log('健康检查失败');
+  }
+
+  return {
+    isFresh: false,
+    lastUpdated: 'unknown',
+    needsUpdate: true,
+  };
+}
+
 // 使用 Hacker News 获取技术/AI 相关热门文章
 export async function fetchAINews(): Promise<AINewsItem[]> {
   try {
@@ -119,6 +193,7 @@ export async function fetchSteamDeals(): Promise<SteamDeal[]> {
           discountPrice: `¥${item.final_price ? item.final_price / 100 : '?'}`,
           discount: `-${discount}%`,
           type,
+          image: item.small_capsule_image,
         });
       });
     }

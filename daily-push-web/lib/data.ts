@@ -1,6 +1,6 @@
 // 资讯数据类型定义
-// 生成时间: 2026-02-27T11:41:02.244Z
-// 数据来源: 每日 00:00 自动生成
+// 生成时间: 2026-02-27T15:17:43.159Z
+// 数据来源: skill 每日推送
 
 // 获取当前日期（YYYY-MM-DD格式）
 export function getTodayDate(): string {
@@ -118,7 +118,7 @@ export interface DailyPush {
   };
 }
 
-// 今日数据（使用动态日期）
+// 今日数据
 const today = getTodayDate();
 const todayCN = getTodayDateCN();
 
@@ -405,7 +405,7 @@ export const todayPush: DailyPush = {
   },
 };
 
-// 历史数据（最近7天）
+// 历史数据
 export const historyPushes: DailyPush[] = [
   todayPush,
 ];

@@ -1,12 +1,18 @@
 {
-  "name": "my-app",
+  "name": "daily-push-web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "skill": "npx tsx skill/index.ts",
+    "skill:generate": "npx tsx skill/index.ts --generate-only",
+    "skill:sync": "npx tsx skill/index.ts --sync-only",
+    "health": "npx tsx scripts/health-check.ts",
+    "health:fix": "AUTO_FIX=true npx tsx scripts/health-check.ts",
+    "postinstall": "npm run skill"
   },
   "dependencies": {
     "autoprefixer": "^10.4.27",
