@@ -1,5 +1,5 @@
 {
-  "date": "2026-02-27",
+  "date": "2026-02-28",
   "keywords": [
     "AI",
     "大模型",
@@ -147,162 +147,160 @@
   ],
   "bandai": [
     {
-      "id": "b1",
-      "name": "真骨雕 假面骑士空我 全能形态 20周年版",
-      "series": "假面骑士空我",
-      "price": "¥8,800",
-      "priceJPY": 8800,
-      "priceCNY": 422,
-      "releaseDate": "2026-04-04",
-      "type": "再版",
-      "image": "https://bandai-a.akamaihd.net/bc/img/model/b_item/00000000000000000000000000000007.jpg",
-      "url": "https://www.bilibili.com/search?keyword=%E7%9C%9F%E9%AA%A8%E9%9B%95%20%E5%81%87%E9%9D%A2%E9%AA%91%E5%A3%AB%E7%A9%BA%E6%88%91%20%E5%85%A8%E8%83%BD%E5%BD%A2%E6%80%81%2020%E5%91%A8%E5%B9%B4%E7%89%88"
-    },
-    {
-      "id": "b2",
-      "name": "RG 1/144 正义高达",
-      "series": "机动战士高达SEED",
+      "id": "bandai-1",
+      "name": "RG 1/144 RX-78-2 高达 Ver.2.1",
+      "series": "机动战士高达",
       "price": "¥3,850",
       "priceJPY": 3850,
       "priceCNY": 185,
-      "releaseDate": "2026-04-11",
-      "type": "再版",
-      "image": "https://bandai-a.akamaihd.net/bc/img/model/b_item/00000000000000000000000000000003.jpg",
-      "url": "https://www.bilibili.com/search?keyword=RG%201%2F144%20%E6%AD%A3%E4%B9%89%E9%AB%98%E8%BE%BE"
+      "releaseDate": "2026-03-14",
+      "type": "新品",
+      "url": "https://bandai-hobby.net/item/0000/"
     },
     {
-      "id": "b3",
-      "name": "MG 1/100 高达F91 Ver.2.0",
-      "series": "机动战士高达F91",
-      "price": "¥5,500",
-      "priceJPY": 5500,
-      "priceCNY": 264,
-      "releaseDate": "2026-05-09",
-      "type": "再版",
-      "image": "https://bandai-a.akamaihd.net/bc/img/model/b_item/00000000000000000000000000000011.jpg",
-      "url": "https://www.bilibili.com/search?keyword=MG%201%2F100%20%E9%AB%98%E8%BE%BEF91%20Ver.2.0"
+      "id": "bandai-2",
+      "name": "MG 1/100 高达EX",
+      "series": "机动战士高达GQuuuuuuX",
+      "price": "¥8,800",
+      "priceJPY": 8800,
+      "priceCNY": 422,
+      "releaseDate": "2026-03-21",
+      "type": "新品",
+      "url": "https://bandai-hobby.net/item/0001/"
+    },
+    {
+      "id": "bandai-3",
+      "name": "HG 1/144 GQuuuuuuX",
+      "series": "机动战士高达GQuuuuuuX",
+      "price": "¥2,750",
+      "priceJPY": 2750,
+      "priceCNY": 132,
+      "releaseDate": "2026-03-21",
+      "type": "新品",
+      "url": "https://bandai-hobby.net/item/0002/"
     }
   ],
   "hotToys": [
     {
-      "id": "h1",
-      "name": "死侍 3.0",
-      "series": "死侍与金刚狼",
-      "price": "HK$1,980",
-      "priceHKD": 1980,
-      "priceCNY": 1822,
-      "announceDate": "2026-06-01",
-      "status": "新品预告",
-      "image": "https://www.hottoys.com.hk/assets/products/00000000000000000000000000000007.jpg",
-      "url": "https://www.bilibili.com/search?keyword=%E6%AD%BB%E4%BE%8D%203.0"
+      "id": "hottoys-1",
+      "name": "蜘蛛侠 黑金战衣",
+      "series": "蜘蛛侠：英雄无归",
+      "price": "HK$1,880",
+      "priceHKD": 1880,
+      "priceCNY": 1730,
+      "announceDate": "2026-03-30",
+      "status": "预定中",
+      "url": "https://www.hottoys.com.hk/"
     },
     {
-      "id": "h2",
+      "id": "hottoys-2",
       "name": "曼达洛人 2.0 豪华版",
       "series": "曼达洛人 第三季",
       "price": "HK$2,180",
       "priceHKD": 2180,
       "priceCNY": 2006,
-      "announceDate": "2026-03-30",
+      "announceDate": "2026-04-14",
       "status": "预定中",
-      "image": "https://www.hottoys.com.hk/assets/products/00000000000000000000000000000002.jpg",
-      "url": "https://www.bilibili.com/search?keyword=%E6%9B%BC%E8%BE%BE%E6%B4%9B%E4%BA%BA%202.0%20%E8%B1%AA%E5%8D%8E%E7%89%88"
+      "url": "https://www.hottoys.com.hk/"
     },
     {
-      "id": "h3",
-      "name": "金刚狼 2.0",
-      "series": "死侍与金刚狼",
-      "price": "HK$2,080",
-      "priceHKD": 2080,
-      "priceCNY": 1914,
-      "announceDate": "2026-06-01",
+      "id": "hottoys-3",
+      "name": "蝙蝠侠 黑暗骑士 1/4",
+      "series": "蝙蝠侠：黑暗骑士",
+      "price": "HK$3,280",
+      "priceHKD": 3280,
+      "priceCNY": 3018,
+      "announceDate": "2026-04-29",
       "status": "新品预告",
-      "image": "https://www.hottoys.com.hk/assets/products/00000000000000000000000000000008.jpg",
-      "url": "https://www.bilibili.com/search?keyword=%E9%87%91%E5%88%9A%E7%8B%BC%202.0"
+      "url": "https://www.hottoys.com.hk/"
     }
   ],
   "steam": [
     {
-      "id": "s1",
-      "name": "博德之门 3",
-      "originalPrice": "¥298",
-      "discountPrice": "¥149",
-      "discount": "-50%",
-      "type": "historical-low",
-      "url": "https://store.steampowered.com/search/?term=%E5%8D%9A%E5%BE%B7%E4%B9%8B%E9%97%A8%203"
-    },
-    {
-      "id": "s2",
+      "id": "steam-1",
       "name": "赛博朋克 2077",
       "originalPrice": "¥298",
       "discountPrice": "¥119",
       "discount": "-60%",
+      "discountPercent": 60,
       "type": "new-low",
-      "url": "https://store.steampowered.com/search/?term=%E8%B5%9B%E5%8D%9A%E6%9C%8B%E5%85%8B%202077"
+      "url": "https://store.steampowered.com/app/1091500"
     },
     {
-      "id": "s3",
+      "id": "steam-2",
+      "name": "博德之门 3",
+      "originalPrice": "¥298",
+      "discountPrice": "¥149",
+      "discount": "-50%",
+      "discountPercent": 50,
+      "type": "historical-low",
+      "url": "https://store.steampowered.com/app/1086940"
+    },
+    {
+      "id": "steam-3",
       "name": "艾尔登法环",
       "originalPrice": "¥298",
       "discountPrice": "¥178",
       "discount": "-40%",
+      "discountPercent": 40,
       "type": "daily-deal",
-      "url": "https://store.steampowered.com/search/?term=%E8%89%BE%E5%B0%94%E7%99%BB%E6%B3%95%E7%8E%AF"
+      "url": "https://store.steampowered.com/app/1245620"
     },
     {
-      "id": "s4",
+      "id": "steam-4",
       "name": "霍格沃茨之遗",
       "originalPrice": "¥384",
       "discountPrice": "¥153",
       "discount": "-60%",
+      "discountPercent": 60,
       "type": "new-low",
-      "url": "https://store.steampowered.com/search/?term=%E9%9C%8D%E6%A0%BC%E6%B2%83%E8%8C%A8%E4%B9%8B%E9%81%97"
+      "url": "https://store.steampowered.com/app/990080"
     }
   ],
   "playstation": [
     {
-      "id": "p1",
+      "id": "ps-1",
       "name": "最终幻想 VII 重生",
       "priceHKD": "HK$468",
-      "priceCNY": 416,
+      "priceCNY": 431,
       "discount": "-30%",
+      "discountPercent": 30,
       "eventName": "春季特惠",
-      "validUntil": "14",
-      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202309/0600/00000000000000000000000000000000.jpg",
-      "url": "https://store.playstation.com/zh-hans-hk/search/%E6%9C%80%E7%BB%88%E5%B9%BB%E6%83%B3%20VII%20%E9%87%8D%E7%94%9F"
+      "validUntil": "2026-03-14",
+      "url": "https://store.playstation.com/zh-hans-hk/product/"
     },
     {
-      "id": "p2",
+      "id": "ps-2",
       "name": "漫威蜘蛛侠 2",
       "priceHKD": "HK$323",
-      "priceCNY": 287,
+      "priceCNY": 297,
       "discount": "-50%",
+      "discountPercent": 50,
       "eventName": "春季特惠",
-      "validUntil": "14",
-      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202306/1300/00000000000000000000000000000000.jpg",
-      "url": "https://store.playstation.com/zh-hans-hk/search/%E6%BC%AB%E5%A8%81%E8%9C%98%E8%9B%9B%E4%BE%A0%202"
+      "validUntil": "2026-03-14",
+      "url": "https://store.playstation.com/zh-hans-hk/product/"
     },
     {
-      "id": "p3",
+      "id": "ps-3",
       "name": "战神：诸神黄昏",
       "priceHKD": "HK$234",
-      "priceCNY": 208,
+      "priceCNY": 215,
       "discount": "-60%",
+      "discountPercent": 60,
       "eventName": "春季特惠",
-      "validUntil": "14",
-      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202207/1210/00000000000000000000000000000000.jpg",
-      "url": "https://store.playstation.com/zh-hans-hk/search/%E6%88%98%E7%A5%9E%EF%BC%9A%E8%AF%B8%E7%A5%9E%E9%BB%84%E6%98%8F"
+      "validUntil": "2026-03-14",
+      "url": "https://store.playstation.com/zh-hans-hk/product/"
     },
     {
-      "id": "p4",
+      "id": "ps-4",
       "name": "黑神话：悟空",
       "priceHKD": "HK$224",
-      "priceCNY": 199,
+      "priceCNY": 206,
       "discount": "-30%",
+      "discountPercent": 30,
       "eventName": "春季特惠",
-      "validUntil": "14",
-      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202408/0600/00000000000000000000000000000000.jpg",
-      "url": "https://store.playstation.com/zh-hans-hk/search/%E9%BB%91%E7%A5%9E%E8%AF%9D%EF%BC%9A%E6%82%9F%E7%A9%BA"
+      "validUntil": "2026-03-14",
+      "url": "https://store.playstation.com/zh-hans-hk/product/"
     }
   ],
   "nintendo": {
@@ -310,12 +308,16 @@
     "deals": [],
     "note": "本周暂无特别优惠活动，建议关注下周的例行折扣更新"
   },
-  "generatedAt": "2026-02-27T15:58:55.033Z",
+  "generatedAt": "2026-02-27T16:19:46.253Z",
   "dataQuality": {
     "freshness": "fresh",
     "sources": [
       "36氪",
-      "IT之家"
+      "IT之家",
+      "万代",
+      "HotToys",
+      "Steam",
+      "PlayStation"
     ],
     "confidence": 100
   }

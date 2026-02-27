@@ -5,13 +5,27 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { SKILL_CONFIG, getTodayDate } from './config';
 import {
-  fetchAllAINews,
+  fetchAllData,
+  fetch36KrNews,
+  fetchZhihuHot,
+  fetchITHome,
+  fetchBandaiProducts,
+  fetchHotToysProducts,
   fetchSteamDeals,
+  fetchPSDeals,
+  fetchNintendoDeals,
   checkDataFreshness,
-  validateData,
-  Kr36NewsItem,
-  ZhihuHotItem,
-  ITHomeItem,
+  validateNewsData,
+  validateProductData,
+  validateGameDeals,
+  type Kr36NewsItem,
+  type ZhihuHotItem,
+  type ITHomeItem,
+  type BandaiProduct,
+  type HotToysProduct,
+  type SteamDeal,
+  type PSDeal,
+  type NintendoData,
 } from './fetcher';
 
 // 数据类型定义
@@ -27,55 +41,6 @@ interface NewsItem {
   publishTime?: string;
 }
 
-interface BandaiProduct {
-  id: string;
-  name: string;
-  series: string;
-  price: string;
-  priceJPY?: number;
-  priceCNY?: number;
-  releaseDate: string;
-  type?: string;
-  image?: string;
-  url?: string;
-}
-
-interface HotToysProduct {
-  id: string;
-  name: string;
-  series: string;
-  price: string;
-  priceHKD?: number;
-  priceCNY?: number;
-  announceDate: string;
-  status?: string;
-  image?: string;
-  url?: string;
-}
-
-interface SteamDeal {
-  id: string;
-  name: string;
-  originalPrice: string;
-  discountPrice: string;
-  discount: string;
-  type: 'new-low' | 'historical-low' | 'daily-deal';
-  image?: string;
-  url?: string;
-}
-
-interface PSDeal {
-  id: string;
-  name: string;
-  priceHKD: string;
-  priceCNY?: number;
-  discount: string;
-  eventName: string;
-  validUntil: string;
-  image?: string;
-  url?: string;
-}
-
 interface DailyPushData {
   date: string;
   keywords: string[];
@@ -84,11 +49,7 @@ interface DailyPushData {
   hotToys: HotToysProduct[];
   steam: SteamDeal[];
   playstation: PSDeal[];
-  nintendo: {
-    hasDeals: boolean;
-    deals: any[];
-    note?: string;
-  };
+  nintendo: NintendoData;
   generatedAt: string;
   dataQuality: {
     freshness: 'fresh' | 'warning' | 'stale';
@@ -154,23 +115,12 @@ function mergeAndRankNews(
     }
   });
 
-  // 如果数据不足，使用备用数据
-  if (newsMap.size < 5) {
-    console.warn(`⚠️ 数据不足 (${newsMap.size} 条)，启用备用数据...`);
-    const backupNews = generateBackupNews();
-    backupNews.forEach((item) => {
-      if (!newsMap.has(item.title.slice(0, 20)) && rank <= 10) {
-        newsMap.set(item.title.slice(0, 20), { ...item, rank: rank++ });
-      }
-    });
-  }
-
   return Array.from(newsMap.values())
     .sort((a, b) => a.rank - b.rank)
     .slice(0, 10);
 }
 
-// 备用新闻数据（当所有API都失败时使用）
+// 备用新闻数据
 function generateBackupNews(): NewsItem[] {
   const today = new Date();
   const dateStr = `${today.getMonth() + 1}月${today.getDate()}日`;
@@ -213,55 +163,6 @@ function generateKeywords(news: NewsItem[]): string[] {
     .map(([kw]) => kw);
 }
 
-// ===== 格式化价格 =====
-function formatJPY(jpy: number): string {
-  return `¥${jpy.toLocaleString()}`;
-}
-
-function formatHKD(hkd: number): string {
-  return `HK$${hkd.toLocaleString()}`;
-}
-
-// ===== 生成商品数据 =====
-function generateBandaiData(): BandaiProduct[] {
-  const products = SKILL_CONFIG.sources.bandai.products;
-  const rate = SKILL_CONFIG.exchangeRates.jpyToCny;
-
-  // 随机选择3款
-  const shuffled = [...products].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, 3).map((p, i) => ({
-    id: `b${i + 1}`,
-    name: p.name,
-    series: p.series,
-    price: formatJPY(p.priceJPY),
-    priceJPY: p.priceJPY,
-    priceCNY: Math.round(p.priceJPY * rate),
-    releaseDate: p.releaseDate,
-    type: p.type,
-    image: p.image,
-    url: `https://www.bilibili.com/search?keyword=${encodeURIComponent(p.name)}`,
-  }));
-}
-
-function generateHotToysData(): HotToysProduct[] {
-  const products = SKILL_CONFIG.sources.hotToys.products;
-  const rate = SKILL_CONFIG.exchangeRates.hkdToCny;
-
-  const shuffled = [...products].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, 3).map((p, i) => ({
-    id: `h${i + 1}`,
-    name: p.name,
-    series: p.series,
-    price: formatHKD(p.priceHKD),
-    priceHKD: p.priceHKD,
-    priceCNY: Math.round(p.priceHKD * rate),
-    announceDate: p.announceDate,
-    status: p.status,
-    image: p.image,
-    url: `https://www.bilibili.com/search?keyword=${encodeURIComponent(p.name)}`,
-  }));
-}
-
 // ===== 数据校验与纠正 =====
 interface CorrectionResult {
   data: DailyPushData;
@@ -273,10 +174,17 @@ async function validateAndCorrect(data: DailyPushData): Promise<CorrectionResult
   const corrections: string[] = [];
   const warnings: string[] = [];
 
-  // 1. 检查新闻数量
+  // 1. 校验新闻数据
+  const newsValidation = validateNewsData(data.news);
+  if (!newsValidation.valid) {
+    warnings.push(...newsValidation.errors);
+    data.news = newsValidation.corrected;
+    corrections.push('新闻数据已纠正');
+  }
+
+  // 2. 补充新闻数量
   if (data.news.length < 5) {
     warnings.push(`新闻数量不足: ${data.news.length} 条`);
-    // 补充备用数据
     const backup = generateBackupNews();
     let rank = data.news.length + 1;
     backup.forEach((item) => {
@@ -287,41 +195,62 @@ async function validateAndCorrect(data: DailyPushData): Promise<CorrectionResult
     corrections.push('已补充备用新闻数据');
   }
 
-  // 2. 检查链接有效性
-  data.news.forEach((item) => {
-    if (!item.url || item.url.includes('google.com')) {
-      // 替换为国内搜索
-      item.url = `https://36kr.com/search/articles/${encodeURIComponent(item.title.slice(0, 10))}`;
-      corrections.push(`[${item.title.slice(0, 15)}...] 链接已替换为国内源`);
-    }
-  });
+  // 3. 校验商品数据
+  const bandaiValidation = validateProductData(data.bandai, 'bandai');
+  if (!bandaiValidation.valid) {
+    warnings.push(...bandaiValidation.errors);
+    data.bandai = await fetchBandaiProducts();
+    corrections.push('万代数据已重新获取');
+  }
 
-  // 3. 检查日期格式
+  const hottoysValidation = validateProductData(data.hotToys, 'hottoys');
+  if (!hottoysValidation.valid) {
+    warnings.push(...hottoysValidation.errors);
+    data.hotToys = await fetchHotToysProducts();
+    corrections.push('Hot Toys 数据已重新获取');
+  }
+
+  // 4. 校验游戏数据
+  const steamValidation = validateGameDeals(data.steam, 'Steam');
+  if (!steamValidation.valid) {
+    warnings.push(...steamValidation.errors);
+    data.steam = await fetchSteamDeals();
+    corrections.push('Steam 数据已重新获取');
+  }
+
+  const psValidation = validateGameDeals(data.playstation, 'PlayStation');
+  if (!psValidation.valid) {
+    warnings.push(...psValidation.errors);
+    data.playstation = await fetchPSDeals();
+    corrections.push('PlayStation 数据已重新获取');
+  }
+
+  // 5. 检查日期格式
   const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
   if (!dateRegex.test(data.date)) {
     data.date = getTodayDate();
     corrections.push('日期格式已纠正');
   }
 
-  // 4. 确保每个新闻都有关键词
+  // 6. 确保每个新闻都有关键词
   data.news.forEach((item) => {
     if (!item.keywords || item.keywords.length === 0) {
       item.keywords = ['AI', '科技'];
     }
   });
 
-  // 5. 重新生成关键词
+  // 7. 重新生成关键词
   if (data.keywords.length === 0) {
     data.keywords = generateKeywords(data.news);
     corrections.push('关键词已重新生成');
   }
 
-  // 6. 检查数据新鲜度
-  const freshness = checkDataFreshness(data.generatedAt, 30);
+  // 8. 检查数据新鲜度
+  const freshness = checkDataFreshness(data.generatedAt, 120);
   if (!freshness.isFresh) {
     warnings.push(freshness.warning || '数据可能过期');
     data.dataQuality.freshness = 'stale';
-  } else if (freshness.age > 15) {
+  } else if (freshness.age > 60) {
     data.dataQuality.freshness = 'warning';
   } else {
     data.dataQuality.freshness = 'fresh';
@@ -335,53 +264,44 @@ export async function generateDailyData(date?: string): Promise<DailyPushData> {
   const today = date || getTodayDate();
   console.log(`📅 生成日期: ${today}\n`);
 
-  // 获取真实数据
-  console.log('🔍 获取 AI 资讯...');
-  const { kr36, zhihu, xhs, ithome } = await fetchAllAINews();
+  // 获取所有真实数据
+  const allData = await fetchAllData();
 
-  console.log('\n🎮 获取 Steam 折扣...');
-  const steamDeals = await fetchSteamDeals();
-
-  // 融合新闻数据（优先36氪）
-  const news = mergeAndRankNews(kr36, zhihu, ithome);
+  // 融合新闻数据
+  const news = mergeAndRankNews(
+    allData.news.kr36,
+    allData.news.zhihu,
+    allData.news.ithome
+  );
   const keywords = generateKeywords(news);
-
-  // 生成商品数据
-  const bandai = generateBandaiData();
-  const hotToys = generateHotToysData();
 
   const data: DailyPushData = {
     date: today,
     keywords,
     news,
-    bandai,
-    hotToys,
-    steam: steamDeals.length > 0 ? steamDeals : generateBackupSteamDeals(),
-    playstation: SKILL_CONFIG.sources.playstation.deals.map((d, i) => ({
-      id: `p${i + 1}`,
-      name: d.name,
-      priceHKD: d.priceHKD,
-      priceCNY: d.priceCNY,
-      discount: d.discount,
-      eventName: d.eventName,
-      validUntil: d.validUntil,
-      image: d.image,
-      url: `https://store.playstation.com/zh-hans-hk/search/${encodeURIComponent(d.name)}`,
-    })),
-    nintendo: {
-      hasDeals: false,
-      deals: [],
-      note: '本周暂无特别优惠活动，建议关注下周的例行折扣更新',
-    },
+    bandai: allData.products.bandai,
+    hotToys: allData.products.hotToys,
+    steam: allData.games.steam,
+    playstation: allData.games.playstation,
+    nintendo: allData.games.nintendo,
     generatedAt: new Date().toISOString(),
     dataQuality: {
       freshness: 'fresh',
-      sources: ['36氪', '知乎', 'IT之家', 'Steam'].filter((_, i) =>
-        [kr36.length > 0, zhihu.length > 0, ithome.length > 0, steamDeals.length > 0][i]
-      ),
+      sources: [],
       confidence: 0,
     },
   };
+
+  // 记录数据来源
+  const sources: string[] = [];
+  if (allData.news.kr36.length > 0) sources.push('36氪');
+  if (allData.news.zhihu.length > 0) sources.push('知乎');
+  if (allData.news.ithome.length > 0) sources.push('IT之家');
+  if (allData.products.bandai.length > 0) sources.push('万代');
+  if (allData.products.hotToys.length > 0) sources.push('HotToys');
+  if (allData.games.steam.length > 0) sources.push('Steam');
+  if (allData.games.playstation.length > 0) sources.push('PlayStation');
+  data.dataQuality.sources = sources;
 
   // 计算置信度
   data.dataQuality.confidence = calculateConfidence(data);
@@ -403,39 +323,27 @@ export async function generateDailyData(date?: string): Promise<DailyPushData> {
   return result.data;
 }
 
-// 备用Steam数据
-function generateBackupSteamDeals(): SteamDeal[] {
-  return SKILL_CONFIG.sources.steam.games.slice(0, 4).map((g, i) => ({
-    id: `s${i + 1}`,
-    name: g.name,
-    originalPrice: g.originalPrice,
-    discountPrice: g.discountPrice,
-    discount: g.discount,
-    type: g.type,
-    url: `https://store.steampowered.com/search/?term=${encodeURIComponent(g.name)}`,
-  }));
-}
-
 // 计算数据置信度
 function calculateConfidence(data: DailyPushData): number {
   let score = 0;
 
   // 新闻来源多样性
-  const uniqueSources = new Set(data.news.map((n) => n.source)).size;
-  score += uniqueSources * 10;
+  const uniqueNewsSources = new Set(data.news.map((n) => n.source)).size;
+  score += uniqueNewsSources * 10;
 
   // 新闻数量
   score += Math.min(data.news.length * 5, 30);
 
-  // Steam数据
-  if (data.steam.length > 0) score += 20;
+  // 商品数据
+  if (data.bandai.length > 0) score += 15;
+  if (data.hotToys.length > 0) score += 15;
+
+  // 游戏数据
+  if (data.steam.length > 0) score += 10;
+  if (data.playstation.length > 0) score += 10;
 
   // 关键词
-  if (data.keywords.length >= 3) score += 15;
-
-  // 新鲜度
-  const freshness = checkDataFreshness(data.generatedAt, 60);
-  if (freshness.isFresh) score += 25;
+  if (data.keywords.length >= 3) score += 10;
 
   return Math.min(score, 100);
 }
@@ -478,17 +386,28 @@ export async function healthCheck(): Promise<{
     recommendations.push('运行 npm run skill 生成今日数据');
   } else {
     const data = JSON.parse(fs.readFileSync(todayFile, 'utf-8'));
-    const validation = validateData(data);
 
-    if (!validation.valid) {
-      issues.push(...validation.errors);
+    // 检查新闻数据
+    const newsValidation = validateNewsData(data.news || []);
+    if (!newsValidation.valid) {
+      issues.push(...newsValidation.errors);
     }
 
     // 检查新鲜度
-    const freshness = checkDataFreshness(data.generatedAt, 60);
-    if (!freshness.isFresh) {
-      issues.push(freshness.warning || '数据过期');
-      recommendations.push('重新运行数据生成以获取最新资讯');
+    if (data.generatedAt) {
+      const freshness = checkDataFreshness(data.generatedAt, 120);
+      if (!freshness.isFresh) {
+        issues.push(freshness.warning || '数据过期');
+        recommendations.push('重新运行数据生成以获取最新资讯');
+      }
+    }
+
+    // 检查商品数据
+    if (!data.bandai || data.bandai.length === 0) {
+      issues.push('万代数据缺失');
+    }
+    if (!data.hotToys || data.hotToys.length === 0) {
+      issues.push('Hot Toys 数据缺失');
     }
   }
 
@@ -508,10 +427,11 @@ export async function main() {
     const filePath = saveDailyData(data);
 
     console.log('\n📊 生成统计:');
-    console.log(`   AI热点: ${data.news.length} 条 (来源: ${data.dataQuality.sources.join(', ')})`);
+    console.log(`   AI热点: ${data.news.length} 条 (来源: ${data.dataQuality.sources.filter(s => ['36氪', '知乎', 'IT之家'].includes(s)).join(', ')})`);
     console.log(`   万代商品: ${data.bandai.length} 款`);
     console.log(`   Hot Toys: ${data.hotToys.length} 款`);
     console.log(`   Steam折扣: ${data.steam.length} 款`);
+    console.log(`   PlayStation: ${data.playstation.length} 款`);
     console.log(`   数据置信度: ${data.dataQuality.confidence}%`);
     console.log(`   新鲜度: ${data.dataQuality.freshness}`);
 

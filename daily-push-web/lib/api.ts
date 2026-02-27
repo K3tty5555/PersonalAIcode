@@ -192,6 +192,7 @@ export async function fetchSteamDeals(): Promise<SteamDeal[]> {
           originalPrice: `¥${item.original_price ? item.original_price / 100 : '?'}`,
           discountPrice: `¥${item.final_price ? item.final_price / 100 : '?'}`,
           discount: `-${discount}%`,
+          discountPercent: discount,
           type,
           image: item.small_capsule_image,
         });

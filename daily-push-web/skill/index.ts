@@ -137,6 +137,7 @@ export interface SteamDeal {
   originalPrice: string;
   discountPrice: string;
   discount: string;
+  discountPercent: number;
   type: 'new-low' | 'historical-low' | 'daily-deal';
   image?: string;
   url?: string;
@@ -148,6 +149,7 @@ export interface PSDeal {
   priceHKD: string;
   priceCNY?: number;
   discount: string;
+  discountPercent: number;
   eventName: string;
   validUntil: string;
   image?: string;
