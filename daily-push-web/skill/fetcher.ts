@@ -899,3 +899,78 @@ export async function fetchAllData(): Promise<{
 
   return results;
 }
+
+// 统一新闻类型
+export interface NewsItem {
+  id: string;
+  title: string;
+  summary: string;
+  url: string;
+  publishTime: string;
+  tags: string[];
+  source: string;
+  cover?: string;
+}
+
+// 简化版：只获取新闻
+export async function fetchAllNews(): Promise<NewsItem[]> {
+  console.log('🔍 获取资讯数据...\n');
+
+  const [kr36, zhihu, ithome] = await Promise.allSettled([
+    fetch36KrNews(),
+    fetchZhihuHot(),
+    fetchITHome(),
+  ]);
+
+  const kr36Data = kr36.status === 'fulfilled' ? kr36.value : [];
+  const zhihuData = zhihu.status === 'fulfilled' ? zhihu.value : [];
+  const ithomeData = ithome.status === 'fulfilled' ? ithome.value : [];
+
+  // 融合数据：优先36氪，然后知乎，最后IT之家
+  const newsMap = new Map<string, NewsItem>();
+
+  kr36Data.forEach((item) => {
+    newsMap.set(item.title.slice(0, 20), {
+      id: item.id,
+      title: item.title,
+      summary: item.summary,
+      url: item.url,
+      publishTime: item.publishTime,
+      tags: item.tags,
+      source: '36氪',
+      cover: item.cover,
+    });
+  });
+
+  zhihuData.forEach((item) => {
+    const key = item.title.slice(0, 20);
+    if (!newsMap.has(key) && newsMap.size < 10) {
+      newsMap.set(key, {
+        id: item.id,
+        title: item.title,
+        summary: item.excerpt || '知乎热榜讨论',
+        url: item.url,
+        publishTime: new Date().toISOString(),
+        tags: item.tags.length > 0 ? item.tags : ['AI', '热议'],
+        source: '知乎',
+      });
+    }
+  });
+
+  ithomeData.forEach((item) => {
+    const key = item.title.slice(0, 20);
+    if (!newsMap.has(key) && newsMap.size < 10) {
+      newsMap.set(key, {
+        id: item.id,
+        title: item.title,
+        summary: item.summary || '点击查看详情',
+        url: item.url,
+        publishTime: new Date().toISOString(),
+        tags: item.tags.length > 0 ? item.tags : ['科技', '资讯'],
+        source: 'IT之家',
+      });
+    }
+  });
+
+  return Array.from(newsMap.values()).slice(0, 10);
+}

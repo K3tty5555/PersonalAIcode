@@ -8,11 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "skill": "npx tsx skill/index.ts",
-    "skill:generate": "npx tsx skill/index.ts --generate-only",
-    "skill:sync": "npx tsx skill/index.ts --sync-only",
-    "health": "npx tsx scripts/health-check.ts",
-    "health:fix": "AUTO_FIX=true npx tsx scripts/health-check.ts",
-    "postinstall": "npm run skill"
+    "skill:health": "npx tsx skill/index.ts health",
+    "update:data": "npx tsx skill/index.ts && npm run build"
   },
   "dependencies": {
     "autoprefixer": "^10.4.27",
