@@ -84,6 +84,27 @@ function getMonthDayCN(): string {
   return `${today.getMonth() + 1}月${today.getDate()}日`;
 }
 
+// 公司官网映射表
+const COMPANY_URLS: Record<string, string> = {
+  'OpenAI': 'https://openai.com/blog',
+  'NVIDIA': 'https://www.nvidia.com/en-us/',
+  'Google': 'https://deepmind.google/',
+  'Meta': 'https://ai.meta.com/',
+  'Figure AI': 'https://www.figure.ai/',
+  'Runway': 'https://runwayml.com/',
+  'Anthropic': 'https://www.anthropic.com/news',
+  'Perplexity': 'https://www.perplexity.com/',
+  '字节跳动': 'https://www.volces.com/',
+  '阿里': 'https://qwenlm.github.io/',
+  'Stability AI': 'https://stability.ai/',
+  'Midjourney': 'https://www.midjourney.com/',
+};
+
+// 生成搜索链接
+function getSearchUrl(title: string): string {
+  return `https://www.google.com/search?q=${encodeURIComponent(title + ' 最新资讯')}`;
+}
+
 // 基于日期生成当日的热点新闻（模拟 AI 搜索生成的内容）
 // 实际部署时，这里可以调用 WebSearch API 获取真实数据
 function generateDailyNews(date: string): { keywords: string[]; news: NewsItem[] } {
@@ -117,7 +138,7 @@ function generateDailyNews(date: string): { keywords: string[]; news: NewsItem[]
       title: `${theme1.company} ${theme1.product} 重磅更新：性能提升 50%`,
       keywords: [theme1.company, theme1.product, theme1.kw],
       highlight: `新一代 ${theme1.product} 在基准测试中全面领先，企业级应用加速落地`,
-      url: `https://www.${theme1.company.toLowerCase().replace(' ', '')}.com/`,
+      url: COMPANY_URLS[theme1.company] || getSearchUrl(`${theme1.company} ${theme1.product}`),
       source: theme1.company,
     },
     {
@@ -126,7 +147,7 @@ function generateDailyNews(date: string): { keywords: string[]; news: NewsItem[]
       title: `${theme2.company} 发布 ${theme2.product} 预览版：支持多模态理解`,
       keywords: [theme2.company, theme2.product, theme2.kw],
       highlight: `原生支持图像、音频、视频输入，上下文窗口扩展至 200K`,
-      url: `https://www.${theme2.company.toLowerCase().replace(' ', '')}.com/`,
+      url: COMPANY_URLS[theme2.company] || getSearchUrl(`${theme2.company} ${theme2.product}`),
       source: theme2.company,
     },
     {
@@ -135,7 +156,7 @@ function generateDailyNews(date: string): { keywords: string[]; news: NewsItem[]
       title: `${theme3.company} ${theme3.product} 开源：400B 参数免费商用`,
       keywords: [theme3.company, theme3.product, theme3.kw],
       highlight: `开源社区迎来最强模型，性能媲美 GPT-4 Turbo`,
-      url: `https://www.${theme3.company.toLowerCase().replace(' ', '')}.com/`,
+      url: COMPANY_URLS[theme3.company] || getSearchUrl(`${theme3.company} ${theme3.product}`),
       source: theme3.company,
     },
     {
@@ -144,7 +165,7 @@ function generateDailyNews(date: string): { keywords: string[]; news: NewsItem[]
       title: '字节跳动豆包大模型 3.0：中文理解能力第一',
       keywords: ['字节跳动', '豆包', '中文模型'],
       highlight: 'C-Eval 中文评测榜首，推理成本降低 60%',
-      url: 'https://www.volces.com/',
+      url: COMPANY_URLS['字节跳动'] || getSearchUrl('字节跳动豆包大模型 3.0'),
       source: '字节跳动',
     },
     {
@@ -153,7 +174,7 @@ function generateDailyNews(date: string): { keywords: string[]; news: NewsItem[]
       title: '阿里通义千问 Qwen3 发布：代码能力超越 GPT-4',
       keywords: ['阿里', '通义千问', '代码生成'],
       highlight: 'HumanEval 得分 92.1%，开源最强代码模型',
-      url: 'https://qwenlm.github.io/',
+      url: COMPANY_URLS['阿里'] || getSearchUrl('阿里通义千问 Qwen3'),
       source: '阿里通义',
     },
     {
@@ -162,7 +183,7 @@ function generateDailyNews(date: string): { keywords: string[]; news: NewsItem[]
       title: 'NVIDIA RTX 5090 正式发售：AI 算力翻倍',
       keywords: ['NVIDIA', '显卡', '算力'],
       highlight: 'DLSS 4.0 支持 AI 帧生成，大模型推理速度提升 2 倍',
-      url: 'https://www.nvidia.com/',
+      url: COMPANY_URLS['NVIDIA'] || getSearchUrl('NVIDIA RTX 5090'),
       source: 'NVIDIA',
     },
     {
@@ -171,7 +192,7 @@ function generateDailyNews(date: string): { keywords: string[]; news: NewsItem[]
       title: 'Stability AI 推出 Stable Diffusion 4：视频生成能力加入',
       keywords: ['Stability AI', '图像生成', '视频生成'],
       highlight: '支持 8 秒 4K 视频生成，文字渲染准确率 95%',
-      url: 'https://stability.ai/',
+      url: COMPANY_URLS['Stability AI'] || getSearchUrl('Stability AI Stable Diffusion 4'),
       source: 'Stability AI',
     },
     {
@@ -180,7 +201,7 @@ function generateDailyNews(date: string): { keywords: string[]; news: NewsItem[]
       title: 'Midjourney V7 发布：风格一致性大幅提升',
       keywords: ['Midjourney', '图像生成', 'AIGC'],
       highlight: '新增角色一致性功能，支持多视角生成',
-      url: 'https://www.midjourney.com/',
+      url: COMPANY_URLS['Midjourney'] || getSearchUrl('Midjourney V7'),
       source: 'Midjourney',
     },
     {
@@ -189,7 +210,7 @@ function generateDailyNews(date: string): { keywords: string[]; news: NewsItem[]
       title: 'Figure AI 人形机器人量产：搭载 Helix 模型',
       keywords: ['Figure AI', '机器人', '具身智能'],
       highlight: '可完成复杂家务任务，2025 年交付首批 10 万台',
-      url: 'https://www.figure.ai/',
+      url: COMPANY_URLS['Figure AI'] || getSearchUrl('Figure AI 人形机器人 Helix'),
       source: 'Figure AI',
     },
     {
@@ -198,7 +219,7 @@ function generateDailyNews(date: string): { keywords: string[]; news: NewsItem[]
       title: '中国 AI 大模型备案数突破 500 个',
       keywords: ['中国AI', '大模型', '政策'],
       highlight: '生成式 AI 服务用户规模达 2.3 亿人',
-      url: 'https://www.cac.gov.cn/',
+      url: getSearchUrl('中国 AI 大模型备案数突破 500'),
       source: '网信办',
     },
   ];

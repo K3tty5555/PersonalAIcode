@@ -1,5 +1,5 @@
 // 资讯数据类型定义
-// 生成时间: 2026-02-27T11:08:06.054Z
+// 生成时间: 2026-02-27T11:20:44.327Z
 // 数据来源: 每日 00:00 自动生成
 
 // 获取当前日期（YYYY-MM-DD格式）
@@ -134,7 +134,7 @@ export const todayPush: DailyPush = {
       "视频生成"
     ],
     "highlight": "新一代 Gen-4 在基准测试中全面领先，企业级应用加速落地",
-    "url": "https://www.runway.com/",
+    "url": "https://runwayml.com/",
     "source": "Runway"
   },
   {
@@ -147,7 +147,7 @@ export const todayPush: DailyPush = {
       "代码助手"
     ],
     "highlight": "原生支持图像、音频、视频输入，上下文窗口扩展至 200K",
-    "url": "https://www.anthropic.com/",
+    "url": "https://www.anthropic.com/news",
     "source": "Anthropic"
   },
   {
@@ -199,7 +199,7 @@ export const todayPush: DailyPush = {
       "算力"
     ],
     "highlight": "DLSS 4.0 支持 AI 帧生成，大模型推理速度提升 2 倍",
-    "url": "https://www.nvidia.com/",
+    "url": "https://www.nvidia.com/en-us/",
     "source": "NVIDIA"
   },
   {
@@ -251,7 +251,7 @@ export const todayPush: DailyPush = {
       "政策"
     ],
     "highlight": "生成式 AI 服务用户规模达 2.3 亿人",
-    "url": "https://www.cac.gov.cn/",
+    "url": "https://www.google.com/search?q=%E4%B8%AD%E5%9B%BD%20AI%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%A4%87%E6%A1%88%E6%95%B0%E7%AA%81%E7%A0%B4%20500%20%E6%9C%80%E6%96%B0%E8%B5%84%E8%AE%AF",
     "source": "网信办"
   }
 ],

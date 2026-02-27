@@ -16,7 +16,7 @@ function parseSkillPush(text: string) {
   }
 
   // 提取新闻 (匹配 **1️⃣ 标题** 格式)
-  const newsMatches = text.matchAll(/\*\*[\d１２３４５６７８９０][️⃣]?\s*(.+?)\*\*[\s\n]*🏷️\s*(.+?)[\s\n]*💬\s*(.+?)(?=\*\*[\d１２３４５６７８９０]|$)/gs);
+  const newsMatches = text.matchAll(/\*\*[\d１２３４５６７８９０][️⃣]?\s*(.+?)\*\*[\s\n]*🏷️\s*(.+?)[\s\n]*💬\s*(.+?)(?=\*\*[\d１２３４５６７８９０]|$)/g);
   let rank = 1;
   for (const match of newsMatches) {
     news.push({
