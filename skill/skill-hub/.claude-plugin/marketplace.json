@@ -1,0 +1,22 @@
+{
+  "name": "personal-skills",
+  "owner": {
+    "name": "cccccccAi"
+  },
+  "metadata": {
+    "description": "个人 AI 技能集合",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "writing-skills",
+      "description": "访谈式写作技能集，含单人模式和多Agent团队对抗模式",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./.claude/skills/interview-write",
+        "./.claude/skills/interview-write-team"
+      ]
+    }
+  ]
+}
