@@ -1,5 +1,5 @@
 // 资讯数据类型定义
-// 生成时间: 2026-02-27T11:20:44.327Z
+// 生成时间: 2026-02-27T11:41:02.244Z
 // 数据来源: 每日 00:00 自动生成
 
 // 获取当前日期（YYYY-MM-DD格式）
@@ -48,7 +48,9 @@ export interface BandaiProduct {
   series: string;
   price: string;
   priceJPY?: number;
+  priceCNY?: number;
   releaseDate: string;
+  type?: string;
   image?: string;
   url?: string;
 }
@@ -59,7 +61,9 @@ export interface HotToysProduct {
   series: string;
   price: string;
   priceHKD?: number;
+  priceCNY?: number;
   announceDate: string;
+  status?: string;
   image?: string;
   url?: string;
 }
@@ -259,53 +263,65 @@ export const todayPush: DailyPush = {
   bandai: [
   {
     "id": "b1",
-    "name": "RG 1/144 海牛高达",
-    "series": "逆袭的夏亚",
-    "price": "¥420",
-    "priceJPY": 8800,
-    "releaseDate": "2026-03-09"
+    "name": "HG 1/144 高达Barbatos 第6形态",
+    "series": "机动战士高达 铁血的奥尔芬斯",
+    "price": "¥2,200",
+    "priceJPY": 2200,
+    "priceCNY": 106,
+    "releaseDate": "2026-04-25",
+    "type": "新品"
   },
   {
     "id": "b2",
-    "name": "RG 1/144 强袭自由高达",
-    "series": "SEED DESTINY",
-    "price": "¥380",
-    "priceJPY": 8000,
-    "releaseDate": "2026-03-14"
+    "name": "S.H.Figuarts 布雷萨奥特曼 月辉形态",
+    "series": "布雷萨奥特曼",
+    "price": "¥7,150",
+    "priceJPY": 7150,
+    "priceCNY": 343,
+    "releaseDate": "2026-03-21",
+    "type": "新品"
   },
   {
     "id": "b3",
-    "name": "S.H.Figuarts 哉阿斯奥特曼",
-    "series": "奥特曼",
-    "price": "¥450",
-    "priceJPY": 9500,
-    "releaseDate": "2026-03-19"
+    "name": "MG 1/100 高达F91 Ver.2.0",
+    "series": "机动战士高达F91",
+    "price": "¥5,500",
+    "priceJPY": 5500,
+    "priceCNY": 264,
+    "releaseDate": "2026-05-09",
+    "type": "再版"
   }
 ],
   hotToys: [
   {
     "id": "h1",
-    "name": "安纳金天行者 1/6",
-    "series": "星球大战",
-    "price": "HK$1,680",
-    "priceHKD": 1680,
-    "announceDate": "2026-03-29"
+    "name": "美国队长 经典版",
+    "series": "美国队长4：勇敢新世界",
+    "price": "HK$1,880",
+    "priceHKD": 1880,
+    "priceCNY": 1730,
+    "announceDate": "2026-04-30",
+    "status": "预定中"
   },
   {
     "id": "h2",
-    "name": "曼达洛人 2.0",
-    "series": "曼达洛人",
-    "price": "HK$1,980",
-    "priceHKD": 1980,
-    "announceDate": "2026-04-13"
+    "name": "曼达洛人 2.0 豪华版",
+    "series": "曼达洛人 第三季",
+    "price": "HK$2,180",
+    "priceHKD": 2180,
+    "priceCNY": 2006,
+    "announceDate": "2026-03-30",
+    "status": "预定中"
   },
   {
     "id": "h3",
-    "name": "钢铁侠 Mark 85 战损版",
-    "series": "复仇者联盟4",
-    "price": "HK$2,680",
-    "priceHKD": 2680,
-    "announceDate": "2026-04-28"
+    "name": "蝙蝠侠 黑暗骑士 1/4",
+    "series": "蝙蝠侠：黑暗骑士",
+    "price": "HK$3,280",
+    "priceHKD": 3280,
+    "priceCNY": 3018,
+    "announceDate": "2026-05-20",
+    "status": "预定中"
   }
 ],
   gameDeals: {

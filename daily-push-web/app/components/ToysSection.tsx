@@ -1,6 +1,6 @@
 'use client';
 
-import { ToyBrick, Flame, Package } from 'lucide-react';
+import { ToyBrick, Flame, Package, Tag } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -37,10 +37,10 @@ export default function ToysSection({ bandai, hotToys }: ToysSectionProps) {
                   </div>
                   <div>
                     <CardTitle className="text-lg">万代发售商品</CardTitle>
-                    <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">BANDAI</p>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">BANDAI 2026年发售情报</p>
                   </div>
                 </div>
-                <Badge variant="outline" className="text-xs">今日 {bandai.length} 款</Badge>
+                <Badge variant="outline" className="text-xs">{bandai.length} 款</Badge>
               </div>
             </CardHeader>
             <CardContent className="pt-0">
@@ -52,17 +52,33 @@ export default function ToysSection({ bandai, hotToys }: ToysSectionProps) {
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1">
-                        <h4 className="font-semibold mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                          {product.name}
-                        </h4>
-                        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-2">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h4 className="font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            {product.name}
+                          </h4>
+                          {product.type && (
+                            <Badge variant="outline" className="text-[10px] px-1.5 py-0 h-4">
+                              {product.type}
+                            </Badge>
+                          )}
+                        </div>
+                        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-3">
                           {product.series}
                         </p>
-                        <div className="flex items-center gap-3 text-sm">
-                          <Badge variant="secondary" className="text-xs">
-                            {product.price}
-                          </Badge>
-                          <span className="text-zinc-400 dark:text-zinc-500 text-xs">
+                        {/* 双货币展示 */}
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <div className="flex items-baseline gap-1.5">
+                            <span className="text-sm font-bold text-blue-600 dark:text-blue-400">
+                              {product.price}
+                            </span>
+                            {product.priceCNY && (
+                              <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                                (约 ¥{product.priceCNY})
+                              </span>
+                            )}
+                          </div>
+                          <span className="text-zinc-300 dark:text-zinc-600">|</span>
+                          <span className="text-xs text-zinc-500 dark:text-zinc-400">
                             发售: {product.releaseDate}
                           </span>
                         </div>
@@ -75,8 +91,11 @@ export default function ToysSection({ bandai, hotToys }: ToysSectionProps) {
               <Separator className="my-4" />
 
               <div className="flex items-center justify-between text-sm text-zinc-500 dark:text-zinc-400">
-                <span>汇率参考</span>
-                <span className="font-mono">日元 × 0.048</span>
+                <span className="flex items-center gap-1.5">
+                  <Tag className="w-3.5 h-3.5" />
+                  汇率参考
+                </span>
+                <span className="font-mono text-xs">日元 × 0.048 ≈ 人民币</span>
               </div>
             </CardContent>
           </Card>
@@ -91,10 +110,10 @@ export default function ToysSection({ bandai, hotToys }: ToysSectionProps) {
                   </div>
                   <div>
                     <CardTitle className="text-lg">Hot Toys 新品预告</CardTitle>
-                    <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">高端收藏级人偶</p>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">高端收藏级人偶 2026</p>
                   </div>
                 </div>
-                <Badge variant="outline" className="text-xs">今日 {hotToys.length} 款</Badge>
+                <Badge variant="outline" className="text-xs">{hotToys.length} 款</Badge>
               </div>
             </CardHeader>
             <CardContent className="pt-0">
@@ -106,18 +125,43 @@ export default function ToysSection({ bandai, hotToys }: ToysSectionProps) {
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1">
-                        <h4 className="font-semibold mb-1 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
-                          {product.name}
-                        </h4>
-                        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-2">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h4 className="font-semibold group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                            {product.name}
+                          </h4>
+                          {product.status && (
+                            <Badge
+                              variant="outline"
+                              className={`text-[10px] px-1.5 py-0 h-4 ${
+                                product.status === '即将出货'
+                                  ? 'border-green-500 text-green-600 dark:text-green-400'
+                                  : product.status === '即将截单'
+                                  ? 'border-orange-500 text-orange-600 dark:text-orange-400'
+                                  : 'border-red-500 text-red-600 dark:text-red-400'
+                              }`}
+                            >
+                              {product.status}
+                            </Badge>
+                          )}
+                        </div>
+                        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-3">
                           {product.series}
                         </p>
-                        <div className="flex items-center gap-3 text-sm">
-                          <Badge variant="secondary" className="text-xs bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400">
-                            {product.price}
-                          </Badge>
-                          <span className="text-zinc-400 dark:text-zinc-500 text-xs">
-                            预告: {product.announceDate}
+                        {/* 双货币展示 */}
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <div className="flex items-baseline gap-1.5">
+                            <span className="text-sm font-bold text-red-600 dark:text-red-400">
+                              {product.price}
+                            </span>
+                            {product.priceCNY && (
+                              <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                                (约 ¥{product.priceCNY})
+                              </span>
+                            )}
+                          </div>
+                          <span className="text-zinc-300 dark:text-zinc-600">|</span>
+                          <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                            {product.announceDate}
                           </span>
                         </div>
                       </div>
@@ -129,8 +173,11 @@ export default function ToysSection({ bandai, hotToys }: ToysSectionProps) {
               <Separator className="my-4" />
 
               <div className="flex items-center justify-between text-sm text-zinc-500 dark:text-zinc-400">
-                <span>汇率参考</span>
-                <span className="font-mono">港币 × 0.92</span>
+                <span className="flex items-center gap-1.5">
+                  <Tag className="w-3.5 h-3.5" />
+                  汇率参考
+                </span>
+                <span className="font-mono text-xs">港币 × 0.92 ≈ 人民币</span>
               </div>
             </CardContent>
           </Card>
