@@ -237,6 +237,71 @@ enabled: true
 
 ---
 
+## 网站数据同步
+
+Skill 生成的数据会自动同步到 `daily-push-web` 项目，供网站展示使用。
+
+### 同步机制
+
+| 步骤 | 操作 | 说明 |
+|------|------|------|
+| 1 | 生成 JSON | 三轮推送完成后，生成 `output/daily-push-YYYY-MM-DD.json` |
+| 2 | 同步到网站 | 运行 `scripts/save-to-website.ts` 更新网站数据 |
+| 3 | 兜底机制 | 网站端自动检测，如今天数据缺失则使用昨日数据 |
+
+### 手动同步
+
+```bash
+# 从 JSON 文件同步到网站
+npx tsx scripts/save-to-website.ts
+
+# 或从推送文本同步
+SKILL_PUSH_TEXT="推送内容" npx tsx scripts/save-to-website.ts
+```
+
+### 网站端数据刷新
+
+网站项目提供以下命令：
+
+```bash
+# 检查数据健康状态
+cd daily-push-web && npm run health
+
+# 自动修复（如数据过期则触发同步）
+cd daily-push-web && npm run health:fix
+
+# 手动触发同步
+cd daily-push-web && npm run sync
+
+# 强制重试同步（忽略已有状态）
+cd daily-push-web && npm run sync:retry
+```
+
+### 数据流向
+
+```
+Skill 9:00 推送
+    ↓
+生成 output/daily-push-2026-02-27.json
+    ↓
+运行 save-to-website.ts
+    ↓
+更新 daily-push-web/lib/data.ts
+    ↓
+网站展示最新数据
+```
+
+### 兜底机制
+
+网站端 (`daily-push-web`) 具备以下兜底机制：
+
+1. **自动重试**: 首次同步失败后，每 5 分钟自动重试，最多 3 次
+2. **历史数据兜底**: 如果今日数据不存在，自动使用昨日数据
+3. **健康检查**: 每 15 分钟检查数据新鲜度，过期自动触发同步
+4. **API 动态刷新**: 提供 `/api/daily-data` 端点，支持动态获取最新数据
+
+---
+
 ## 文件结构
 
 ```
@@ -246,7 +311,11 @@ daily-push-suite/
 ├── examples/
 │   └── sample-pushes.md        # 推送示例
 ├── scripts/
-│   └── health_check.py         # 健康检查
+│   ├── health_check.py         # 健康检查
+│   ├── generate-web-data.ts    # 生成网页数据
+│   └── save-to-website.ts      # 同步到网站项目
+├── output/                     # 数据输出目录
+│   └── daily-push-YYYY-MM-DD.json
 └── references/
     └── search-keywords.md      # 搜索关键词参考
 ```
@@ -256,3 +325,4 @@ daily-push-suite/
 ## 更新记录
 
 - **2026-02-27**: 整合四个技能为每日推送套件，优化格式规范
+- **2026-02-27**: 添加网站数据同步功能，支持自动同步和兜底机制

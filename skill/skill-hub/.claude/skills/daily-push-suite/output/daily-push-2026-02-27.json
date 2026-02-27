@@ -1,0 +1,242 @@
+{
+  "date": "2026-02-27",
+  "keywords": ["Claude 4.5", "Gemini 2.0", "Sora", "AI芯片", "具身智能"],
+  "news": [
+    {
+      "id": "ai-1",
+      "rank": 1,
+      "title": "Anthropic 发布 Claude 4.5：推理能力大幅提升",
+      "keywords": ["Anthropic", "Claude 4.5", "大模型"],
+      "highlight": "支持 200K 上下文，推理速度提升 40%，代码生成能力超越 GPT-4o",
+      "url": "https://www.anthropic.com/news",
+      "source": "Anthropic"
+    },
+    {
+      "id": "ai-2",
+      "rank": 2,
+      "title": "Google Gemini 2.0 Flash 全面开放：多模态能力再进化",
+      "keywords": ["Google", "Gemini", "多模态"],
+      "highlight": "原生图像生成、视频理解、实时语音对话，API 价格降低 50%",
+      "url": "https://deepmind.google/",
+      "source": "Google DeepMind"
+    },
+    {
+      "id": "ai-3",
+      "rank": 3,
+      "title": "OpenAI Sora 正式版发布：最长可生成 60 秒视频",
+      "keywords": ["OpenAI", "Sora", "视频生成"],
+      "highlight": "支持 1080p 分辨率，物理模拟更准确，已向 Plus 用户开放",
+      "url": "https://openai.com/sora",
+      "source": "OpenAI"
+    },
+    {
+      "id": "ai-4",
+      "rank": 4,
+      "title": "NVIDIA 发布 H200 NVL：专为 LLM 推理优化",
+      "keywords": ["NVIDIA", "AI芯片", "算力"],
+      "highlight": "推理性能提升 90%，功耗降低 30%，大模型部署成本大幅下降",
+      "url": "https://www.nvidia.com/",
+      "source": "NVIDIA"
+    },
+    {
+      "id": "ai-5",
+      "rank": 5,
+      "title": "Figure AI 与宝马达成合作：人形机器人进工厂",
+      "keywords": ["Figure AI", "机器人", "具身智能"],
+      "highlight": "Figure 02 将在宝马工厂执行物流任务，2026 年交付首批 1000 台",
+      "url": "https://www.figure.ai/",
+      "source": "Figure AI"
+    },
+    {
+      "id": "ai-6",
+      "rank": 6,
+      "title": "阿里通义千问 Qwen2.5-VL 开源：视觉理解能力登顶",
+      "keywords": ["阿里", "通义千问", "开源"],
+      "highlight": "支持 20 万字图文理解，OCR 准确率 98%，代码已开源",
+      "url": "https://qwenlm.github.io/",
+      "source": "阿里通义"
+    },
+    {
+      "id": "ai-7",
+      "rank": 7,
+      "title": "字节跳动发布豆包 Pro：企业级 AI 助手",
+      "keywords": ["字节跳动", "豆包", "企业服务"],
+      "highlight": "支持私有化部署，企业知识库接入，已服务 10 万+ 企业",
+      "url": "https://www.volces.com/",
+      "source": "字节跳动"
+    },
+    {
+      "id": "ai-8",
+      "rank": 8,
+      "title": "Stability AI 推出 Stable Diffusion 3.5：图像质量飞跃",
+      "keywords": ["Stability AI", "图像生成", "SD3.5"],
+      "highlight": "文字渲染准确率 95%，支持多种艺术风格，开源可商用",
+      "url": "https://stability.ai/",
+      "source": "Stability AI"
+    },
+    {
+      "id": "ai-9",
+      "rank": 9,
+      "title": "微软 Copilot Studio 重大更新：自定义 AI 代理",
+      "keywords": ["微软", "Copilot", "AI代理"],
+      "highlight": "零代码构建企业 AI 工作流，已与 Office 365 深度集成",
+      "url": "https://www.microsoft.com/copilot",
+      "source": "微软"
+    },
+    {
+      "id": "ai-10",
+      "rank": 10,
+      "title": "中国 AI 大模型用户数突破 3 亿：应用落地加速",
+      "keywords": ["中国AI", "大模型", "数据报告"],
+      "highlight": "生成式 AI 日均调用量超 100 亿次，覆盖 200+ 应用场景",
+      "url": "https://www.google.com/search?q=中国AI大模型用户3亿",
+      "source": "CNNIC"
+    }
+  ],
+  "bandai": [
+    {
+      "id": "b1",
+      "name": "RG 1/144 RX-78-2 高达 Ver.2.1",
+      "series": "机动战士高达",
+      "price": "¥3,850",
+      "priceJPY": 3850,
+      "priceCNY": 185,
+      "releaseDate": "2026-03-14",
+      "type": "新品"
+    },
+    {
+      "id": "b2",
+      "name": "MG 1/100 高达EX",
+      "series": "机动战士高达GQuuuuuuX",
+      "price": "¥8,800",
+      "priceJPY": 8800,
+      "priceCNY": 422,
+      "releaseDate": "2026-03-21",
+      "type": "新品"
+    },
+    {
+      "id": "b3",
+      "name": "S.H.Figuarts 布雷萨奥特曼 月辉形态",
+      "series": "布雷萨奥特曼",
+      "price": "¥7,150",
+      "priceJPY": 7150,
+      "priceCNY": 343,
+      "releaseDate": "2026-03-21",
+      "type": "新品"
+    }
+  ],
+  "hotToys": [
+    {
+      "id": "h1",
+      "name": "美国队长 经典版",
+      "series": "美国队长4：勇敢新世界",
+      "price": "HK$1,880",
+      "priceHKD": 1880,
+      "priceCNY": 1730,
+      "announceDate": "2026-04-30",
+      "status": "预定中"
+    },
+    {
+      "id": "h2",
+      "name": "曼达洛人 2.0 豪华版",
+      "series": "曼达洛人 第三季",
+      "price": "HK$2,180",
+      "priceHKD": 2180,
+      "priceCNY": 2006,
+      "announceDate": "2026-03-30",
+      "status": "预定中"
+    },
+    {
+      "id": "h3",
+      "name": "蝙蝠侠 黑暗骑士 1/4",
+      "series": "蝙蝠侠：黑暗骑士",
+      "price": "HK$3,280",
+      "priceHKD": 3280,
+      "priceCNY": 3018,
+      "announceDate": "2026-05-20",
+      "status": "预定中"
+    }
+  ],
+  "steam": [
+    {
+      "id": "steam-1086940",
+      "name": "博德之门3",
+      "originalPrice": "¥298",
+      "discountPrice": "¥224",
+      "discount": "-25%",
+      "type": "daily-deal",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/capsule_184x69.jpg"
+    },
+    {
+      "id": "steam-1771300",
+      "name": "天国：拯救2",
+      "originalPrice": "¥228",
+      "discountPrice": "¥114",
+      "discount": "-50%",
+      "type": "historical-low",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1771300/capsule_184x69.jpg"
+    },
+    {
+      "id": "steam-2183900",
+      "name": "Warhammer 40,000: 星际战士2",
+      "originalPrice": "¥249",
+      "discountPrice": "¥82",
+      "discount": "-67%",
+      "type": "historical-low",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2183900/capsule_184x69.jpg"
+    },
+    {
+      "id": "steam-3159330",
+      "name": "刺客信条：影",
+      "originalPrice": "¥348",
+      "discountPrice": "¥174",
+      "discount": "-50%",
+      "type": "historical-low",
+      "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3159330/capsule_184x69.jpg"
+    }
+  ],
+  "playstation": [
+    {
+      "id": "p1",
+      "name": "最终幻想 VII 重生",
+      "priceHKD": "HK$468",
+      "priceCNY": 416,
+      "discount": "-30%",
+      "eventName": "春季特惠",
+      "validUntil": "2026-03-13"
+    },
+    {
+      "id": "p2",
+      "name": "漫威蜘蛛侠 2",
+      "priceHKD": "HK$323",
+      "priceCNY": 287,
+      "discount": "-50%",
+      "eventName": "春季特惠",
+      "validUntil": "2026-03-13"
+    },
+    {
+      "id": "p3",
+      "name": "战神：诸神黄昏",
+      "priceHKD": "HK$234",
+      "priceCNY": 208,
+      "discount": "-60%",
+      "eventName": "春季特惠",
+      "validUntil": "2026-03-13"
+    },
+    {
+      "id": "p4",
+      "name": "黑神话：悟空",
+      "priceHKD": "HK$224",
+      "priceCNY": 199,
+      "discount": "-30%",
+      "eventName": "春季特惠",
+      "validUntil": "2026-03-13"
+    }
+  ],
+  "nintendo": {
+    "hasDeals": false,
+    "deals": [],
+    "note": "本周暂无特别优惠活动，建议关注下周的例行折扣更新"
+  },
+  "generatedAt": "2026-02-27T09:30:00.000Z"
+}
