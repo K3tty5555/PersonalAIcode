@@ -21,11 +21,7 @@
 
 **改进优化**
 
-- ✅ 优化 README.md 结构，增加快速开始和命令速查
-- ✅ 新增 AI_PM_新手教程.html 可视化教程（Apple 设计规范）
-- ✅ 删除 QUICKSTART.md 和 TUTORIAL.md，统一使用 HTML 教程
-- ✅ 新增 CHANGELOG.md 版本更新日志
-- ✅ 完善多项目管理命令（list/switch/status/new/delete）
+- ✅ **操作权限分级**：新增「仅查看 / 自由操作 / 无限制」三种模式，保护用户数据安全
 
 **文件变更**
 
@@ -216,6 +212,14 @@ cp AI_PM/QUICKSTART.md AI_PM/QUICKSTART.md.bak
 ---
 
 ## 📝 更新说明
+
+### 记录范围
+
+CHANGELOG 仅记录**功能性更新**，以下内容不记录：
+- 文案、注释的细微调整
+- 样式、排版的优化
+- 代码重构（无功能变化）
+- 文档格式调整
 
 ### 版本号规则
 

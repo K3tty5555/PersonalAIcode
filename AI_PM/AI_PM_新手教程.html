@@ -756,6 +756,82 @@
             }
         }
 
+        /* Level Module Styles */
+        .module-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--color-divider), transparent);
+            margin: var(--spacing-xl) 0;
+            position: relative;
+        }
+
+        .module-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 100px;
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: 0.02em;
+        }
+
+        .module-badge.basic {
+            background: linear-gradient(135deg, #34C759, #30D158);
+            color: white;
+        }
+
+        .module-badge.intermediate {
+            background: linear-gradient(135deg, #0071E3, #5856D6);
+            color: white;
+        }
+
+        .module-badge.advanced {
+            background: linear-gradient(135deg, #FF9500, #FF6B35);
+            color: white;
+        }
+
+        .toc-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .toc-group-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-text-tertiary);
+            margin-bottom: var(--spacing-xs);
+            padding-left: var(--spacing-xs);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .toc-group-title.basic::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background: #34C759;
+            border-radius: 50%;
+        }
+
+        .toc-group-title.intermediate::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background: #0071E3;
+            border-radius: 50%;
+        }
+
+        .toc-group-title.advanced::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background: #FF9500;
+            border-radius: 50%;
+        }
+
         /* Anchor offset for fixed header */
         [id] {
             scroll-margin-top: 76px;
@@ -795,9 +871,9 @@
                 <span class="logo-badge">新手教程</span>
             </a>
             <nav class="nav-links">
-                <a href="#install" class="nav-link">安装</a>
-                <a href="#projects" class="nav-link">项目实战</a>
-                <a href="#workflow" class="nav-link">工作流程</a>
+                <a href="#install" class="nav-link">基础</a>
+                <a href="#workflow" class="nav-link">进阶</a>
+                <a href="#project2" class="nav-link">高阶</a>
                 <a href="#faq" class="nav-link">FAQ</a>
             </nav>
         </div>
@@ -879,41 +955,68 @@
         <!-- Table of Contents -->
         <div class="toc">
             <div class="toc-title">目录</div>
-            <div class="toc-grid">
-                <a href="#install" class="toc-item">
-                    <span class="toc-number">1</span>
-                    <span class="toc-text">安装与启动</span>
-                </a>
-                <a href="#project1" class="toc-item">
-                    <span class="toc-number">2</span>
-                    <span class="toc-text">第一个项目</span>
-                </a>
-                <a href="#workflow" class="toc-item">
-                    <span class="toc-number">3</span>
-                    <span class="toc-text">工作流程</span>
-                </a>
-                <a href="#project2" class="toc-item">
-                    <span class="toc-number">4</span>
-                    <span class="toc-text">迭代优化</span>
-                </a>
-                <a href="#project3" class="toc-item">
-                    <span class="toc-number">5</span>
-                    <span class="toc-text">竞品对标</span>
-                </a>
-                <a href="#pm" class="toc-item">
-                    <span class="toc-number">6</span>
-                    <span class="toc-text">项目管理</span>
-                </a>
-                <a href="#faq" class="toc-item">
-                    <span class="toc-number">7</span>
-                    <span class="toc-text">常见问题</span>
-                </a>
+
+            <!-- 基础操作 -->
+            <div class="toc-group">
+                <div class="toc-group-title basic">基础操作</div>
+                <div class="toc-grid">
+                    <a href="#install" class="toc-item">
+                        <span class="toc-number">1</span>
+                        <span class="toc-text">安装与启动</span>
+                    </a>
+                    <a href="#project1" class="toc-item">
+                        <span class="toc-number">2</span>
+                        <span class="toc-text">第一个项目</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 进阶操作 -->
+            <div class="toc-group">
+                <div class="toc-group-title intermediate">进阶操作</div>
+                <div class="toc-grid">
+                    <a href="#workflow" class="toc-item">
+                        <span class="toc-number">3</span>
+                        <span class="toc-text">工作流程详解</span>
+                    </a>
+                    <a href="#pm" class="toc-item">
+                        <span class="toc-number">4</span>
+                        <span class="toc-text">多项目管理</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 高阶操作 -->
+            <div class="toc-group">
+                <div class="toc-group-title advanced">高阶操作</div>
+                <div class="toc-grid">
+                    <a href="#project2" class="toc-item">
+                        <span class="toc-number">5</span>
+                        <span class="toc-text">迭代优化模式</span>
+                    </a>
+                    <a href="#project3" class="toc-item">
+                        <span class="toc-number">6</span>
+                        <span class="toc-text">竞品对标模式</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 附录 -->
+            <div class="toc-group">
+                <div class="toc-group-title">附录</div>
+                <div class="toc-grid">
+                    <a href="#faq" class="toc-item">
+                        <span class="toc-number">7</span>
+                        <span class="toc-text">常见问题</span>
+                    </a>
+                </div>
             </div>
         </div>
 
-        <!-- Section 1: Install -->
+        <!-- Section 1: Install (Basic) -->
         <section class="section" id="install">
             <div class="section-header">
+                <span class="module-badge basic">🌱 基础操作</span>
                 <div class="section-eyebrow">Getting Started</div>
                 <h2 class="section-title">安装与启动</h2>
                 <p class="section-description">3 分钟完成环境准备，开始你的第一个 AI 产品经理项目</p>
@@ -949,9 +1052,10 @@ claude
             </div>
         </section>
 
-        <!-- Section 2: First Project -->
+        <!-- Section 2: First Project (Basic) -->
         <section class="section" id="project1">
             <div class="section-header">
+                <span class="module-badge basic">🌱 基础操作</span>
                 <div class="section-eyebrow">First Project</div>
                 <h2 class="section-title">第一个项目：从零开始</h2>
                 <p class="section-description">最常用场景，完整走一遍标准流程，从想法到 PRD 和原型</p>
@@ -1052,9 +1156,10 @@ python3 -m http.server 8080
             </div>
         </section>
 
-        <!-- Section 3: Workflow -->
+        <!-- Section 3: Workflow (Intermediate) -->
         <section class="section" id="workflow">
             <div class="section-header">
+                <span class="module-badge intermediate">🚀 进阶操作</span>
                 <div class="section-eyebrow">Workflow</div>
                 <h2 class="section-title">深度理解 AI 工作流程</h2>
                 <p class="section-description">了解六个阶段的目的和产出，掌握断点续传和阶段控制</p>
@@ -1133,9 +1238,10 @@ AI: 📊 检测到当前项目：course-app
 /ai-pm prototype # 仅生成原型</pre></div>
         </section>
 
-        <!-- Section 4: Second Project -->
+        <!-- Section 4: Iteration (Advanced) -->
         <section class="section" id="project2">
             <div class="section-header">
+                <span class="module-badge advanced">⚡ 高阶操作</span>
                 <div class="section-eyebrow">Iteration</div>
                 <h2 class="section-title">第二个项目：迭代优化</h2>
                 <p class="section-description">现有系统升级、翻新场景，支持多网页批量分析</p>
@@ -1230,9 +1336,10 @@ cp ai-pm/templates/reference-config.md 项目/07-references/</pre></div>
             </div>
         </section>
 
-        <!-- Section 5: Third Project -->
+        <!-- Section 5: Benchmark (Advanced) -->
         <section class="section" id="project3">
             <div class="section-header">
+                <span class="module-badge advanced">⚡ 高阶操作</span>
                 <div class="section-eyebrow">Benchmarking</div>
                 <h2 class="section-title">第三个项目：竞品对标</h2>
                 <p class="section-description">参考竞品，做差异化产品，输出对标版 PRD</p>
@@ -1288,9 +1395,10 @@ cp ai-pm/templates/reference-config.md 项目/07-references/</pre></div>
             </table>
         </section>
 
-        <!-- Section 6: PM -->
+        <!-- Section 6: Project Management (Intermediate) -->
         <section class="section" id="pm">
             <div class="section-header">
+                <span class="module-badge intermediate">🚀 进阶操作</span>
                 <div class="section-eyebrow">Management</div>
                 <h2 class="section-title">项目管理进阶</h2>
                 <p class="section-description">多项目管理和实用技巧</p>
@@ -1347,9 +1455,10 @@ cp -r AI_PM/ai-pm/output/projects/my-project ./backup/
 cp -r AI_PM/ai-pm/output/projects ./backup-all/</pre></div>
         </section>
 
-        <!-- Section 7: FAQ -->
+        <!-- Section 7: FAQ (Appendix) -->
         <section class="section" id="faq">
             <div class="section-header">
+                <span class="module-badge" style="background: linear-gradient(135deg, #8E8E93, #636366); color: white;">📎 附录</span>
                 <div class="section-eyebrow">FAQ</div>
                 <h2 class="section-title">常见问题与技巧</h2>
                 <p class="section-description">解决常见问题，提升使用效率</p>
@@ -1429,10 +1538,9 @@ rm AI_PM/ai-pm/output/projects/项目名/03-*.md</pre></div>
         <div class="footer-content">
             <div class="footer-links">
                 <a href="README.md" class="footer-link">项目简介</a>
-                <a href="README.md" class="footer-link">项目简介</a>
                 <a href="CHANGELOG.md" class="footer-link">更新日志</a>
             </div>
-            <div class="footer-text">AI_PM - AI 产品经理技能套件 · MIT License · 祝你使用愉快</div>
+            <div class="footer-text">AI_PM - 你的AI产品经理 · by KettyWu · 祝你使用愉快</div>
         </div>
     </footer>
 
