@@ -194,7 +194,7 @@ Phase 4: 用户故事
     ↓ 生成 04-user-stories.md
     ↓ 用户确认
 Phase 5: PRD 生成
-    ↓ 生成 05-PRD-v1.0.md
+    ↓ 生成 05-PRD-v1.0.md（基于用户模板的8章结构）
     ↓ 输出完成总结
 ```
 
