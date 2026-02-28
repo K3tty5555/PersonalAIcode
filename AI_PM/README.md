@@ -10,6 +10,7 @@
 - **竞品研究** - 分析市场竞争格局，识别差异化机会
 - **用户故事** - 编写详细的用户故事和验收标准
 - **PRD 生成** - 输出专业级产品需求文档（支持自定义模板）
+- **原型生成** - 生成可交互的网页原型（HTML+CSS+JS）
 - **多项目管理** - 每个需求独立项目文件夹，避免文件混乱
 - **模板库支持** - 可上传自定义 PRD/用户故事/分析模板
 
@@ -22,15 +23,20 @@ AI_PM/
 │   ├── ai-pm-analyze/      # 需求分析技能
 │   ├── ai-pm-research/     # 竞品研究技能
 │   ├── ai-pm-story/        # 用户故事技能
-│   └── ai-pm-prd/          # PRD 生成技能
+│   ├── ai-pm-prd/          # PRD 生成技能
+│   └── ai-pm-prototype/    # 原型生成技能
 └── ai-pm/output/
     ├── projects/                    # 所有项目
     │   ├── meeting-assistant-20260228/    # 项目1
-    │   │   ├── 01-requirement-draft.md
-    │   │   ├── 02-analysis-report.md
-    │   │   ├── 03-competitor-report.md
-    │   │   ├── 04-user-stories.md
-    │   │   └── 05-PRD-v1.0.md
+    │   │   ├── 01-requirement-draft.md    # 需求澄清
+    │   │   ├── 02-analysis-report.md      # 需求分析
+    │   │   ├── 03-competitor-report.md    # 竞品研究
+    │   │   ├── 04-user-stories.md         # 用户故事
+    │   │   ├── 05-PRD-v1.0.md             # PRD文档
+    │   │   └── 06-prototype/              # 网页原型
+    │   │       ├── index.html             # 入口页面
+    │   │       ├── css/
+    │   │       └── js/
     │   ├── accounting-app-20260301/       # 项目2
     │   └── ...
     └── .current-project             # 记录当前项目
@@ -69,6 +75,7 @@ AI 会：
 /ai-pm research                      # 仅执行竞品研究
 /ai-pm story                         # 仅执行用户故事
 /ai-pm prd                           # 仅生成 PRD
+/ai-pm prototype                     # 仅生成网页原型
 ```
 
 ## 工作流程
@@ -88,6 +95,8 @@ AI 会：
     ↓ 保存 04-user-stories.md
 PRD 生成
     ↓ 保存 05-PRD-v1.0.md
+网页原型生成（可选）
+    ↓ 保存 06-prototype/
 ✅ 完成
 ```
 
@@ -129,6 +138,37 @@ PRD 生成
 - 按执行顺序排列
 - 清楚看到项目进展
 - 支持版本迭代（如 `05-PRD-v1.1.md`）
+
+## 原型生成
+
+### 生成网页原型
+
+PRD 完成后，可以继续生成交互式网页原型：
+
+```bash
+/ai-pm prototype
+```
+
+AI 会询问：
+1. **设备类型**：移动端 / Web端 / 响应式
+2. **设计风格**：Apple风格 / Material Design / 自定义
+
+**默认配置**：Web端 + Apple风格
+
+### 预览原型
+
+```bash
+cd AI_PM/ai-pm/output/projects/{项目名}/06-prototype
+python -m http.server 8080
+# 访问 http://localhost:8080
+```
+
+### 原型特点
+
+- **基于 PRD**：自动从 PRD 提取页面和功能
+- **可交互**：按钮、链接可点击，页面可跳转
+- **现代化设计**：默认 Apple 风格，简洁美观
+- **独立文件**：HTML+CSS+JS，可直接部署
 
 ## 交互式需求澄清
 
